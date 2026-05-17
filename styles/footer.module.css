@@ -1,0 +1,252 @@
+.footerParent {
+  background-color: var(--Gray-200);
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 240px;
+  box-sizing: border-box;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.footer,
+.footerContent,
+.footerParent {
+  display: flex;
+  align-items: flex-start;
+}
+.footer {
+  height: 435px;
+  width: 1440px;
+  background-color: var(--Gray-200);
+  overflow: hidden;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 68px;
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+  gap: 59px;
+  text-align: left;
+  font-size: 16px;
+  color: #172762;
+  font-family: Montserrat;
+}
+.footerContent {
+  align-self: stretch;
+  gap: 75px;
+  z-index: 0;
+}
+.logo {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+.largeLogo {
+  width: 263px;
+  height: 52px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.footerDetails {
+  display: flex;
+  align-items: flex-start;
+  gap: 94px;
+}
+.contactDetails {
+  align-items: flex-start;
+  padding: 0 16px;
+  gap: 75px;
+}
+.contactDetails,
+.info,
+.labelDark,
+.text {
+  display: flex;
+  justify-content: center;
+}
+.info {
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+  gap: 32px;
+}
+.labelDark,
+.text {
+  align-items: center;
+}
+.labelDark {
+  flex-direction: column;
+  color: #1c52d8;
+}
+.text {
+  align-self: stretch;
+}
+.button {
+  position: relative;
+  font-weight: 600;
+}
+.labelDarkChild {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  background-color: #1c52d8;
+}
+.labelDark2,
+.text2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.labelDark2 {
+  flex-direction: column;
+}
+.text2 {
+  width: 100%;
+  max-width: 100%;
+}
+.contacts {
+  width: 342px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  font-size: 20px;
+}
+.contact {
+  width: 277px;
+  overflow: hidden;
+  padding: 4px;
+  box-sizing: border-box;
+  gap: 12px;
+}
+.contact,
+.email {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.whitespace {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+}
+.hrDepartment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4px;
+  gap: 5px;
+}
+.departmentNames {
+  margin: 0;
+  height: 24px;
+  position: relative;
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+}
+.adress,
+.departmentNames,
+.div {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.div {
+  height: 24px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--Gray-400);
+}
+.adress {
+  overflow: hidden;
+  justify-content: center;
+  padding: 4px;
+}
+.div2 {
+  position: relative;
+  font-weight: 500;
+}
+.buttonTop,
+.iconarrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.buttonTop {
+  cursor: pointer;
+  border: 2px solid #1c52d8;
+  padding: 16px 16px 15px 15px;
+  background-color: transparent;
+  height: 79px;
+  width: 79px;
+}
+.iconarrow {
+  height: 48px;
+  width: 48px;
+  padding: 2px;
+  transform: rotate(-90deg);
+}
+.icon2 {
+  height: 20px;
+  width: 100%;
+  position: relative;
+  transform: rotate(90deg);
+}
+.div3 {
+  width: 450px;
+  height: 24px;
+  position: absolute;
+  margin: 0 !important;
+  bottom: 35px;
+  left: 68px;
+  font-weight: 500;
+  color: var(--Gray-400);
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+@media screen and (max-width: 960px) {
+  .footerParent {
+    padding-left: 120px;
+    padding-right: 120px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .footerParent {
+    padding-left: 60px;
+    padding-right: 60px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 480px) {
+  .footerParent {
+    padding-left: 60px;
+    padding-right: 60px;
+    box-sizing: border-box;
+  }
+}

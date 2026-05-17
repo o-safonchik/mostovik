@@ -1,0 +1,380 @@
+.parent,
+.root {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.root {
+  width: 1440px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 48px;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.parent {
+  flex: 1;
+  flex-direction: column;
+  gap: 66px;
+  min-width: 336px;
+  text-align: left;
+  font-size: 48px;
+  color: var(--Primary-blue);
+  font-family: Montserrat;
+}
+.h1,
+.locationsParent {
+  display: flex;
+  position: relative;
+}
+.h1 {
+  margin: 0;
+  width: 305px;
+  font-size: inherit;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  font-family: inherit;
+  align-items: center;
+}
+.locationsParent {
+  align-self: stretch;
+  background-color: var(--Primary-blue);
+  overflow: hidden;
+  align-items: flex-start;
+  padding: 358px 40px 57px;
+  box-sizing: border-box;
+  isolation: isolate;
+  max-width: 100%;
+  font-size: 24px;
+  color: var(--Gray-50);
+}
+.locations {
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+.icon,
+.locations,
+.locationsChild {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.icon {
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.locationsChild {
+  background: linear-gradient(
+    180deg,
+    rgba(23, 39, 98, 0),
+    rgba(23, 39, 98, 0.96)
+  );
+  z-index: 1;
+}
+.group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 29px;
+  max-width: 100%;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.b,
+.h3 {
+  align-self: stretch;
+  position: relative;
+}
+.b {
+  height: 89px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.h3 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+}
+.frameParent {
+  flex: 1;
+  flex-direction: column;
+  gap: 17px;
+  min-width: 336px;
+  text-align: left;
+  font-size: 24px;
+  color: #fff;
+  font-family: Montserrat;
+}
+.frameGroup,
+.frameParent,
+.projectDetails {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.frameGroup {
+  align-self: stretch;
+  background-color: var(--Primary-blue);
+  overflow: hidden;
+  padding: 203px 40px 57px;
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+}
+.projectDetails {
+  flex: 1;
+  flex-direction: column;
+  gap: 32px;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.b2,
+.h32 {
+  align-self: stretch;
+  position: relative;
+}
+.b2 {
+  height: 71px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.h32 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--Gray-50);
+}
+.frameContainer,
+.icon2 {
+  max-width: 100%;
+  overflow: hidden;
+}
+.frameContainer {
+  align-self: stretch;
+  background-color: var(--Primary-blue);
+  display: flex;
+  align-items: flex-start;
+  padding: 81px 26px 50px;
+  box-sizing: border-box;
+  position: relative;
+  isolation: isolate;
+}
+.icon2 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: -1px;
+  left: 3px;
+  max-height: 100%;
+  object-fit: cover;
+}
+.b3,
+.frameDiv {
+  display: flex;
+  flex-shrink: 0;
+}
+.frameDiv {
+  width: 370px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 100%;
+  z-index: 1;
+}
+.b3 {
+  align-self: stretch;
+  height: 86px;
+  position: relative;
+  align-items: center;
+}
+.frameParent2,
+.frameSection,
+.navigationButton {
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+}
+.frameSection {
+  flex: 1;
+  flex-direction: column;
+  gap: 58px;
+  min-width: 336px;
+  flex-shrink: 0;
+  text-align: left;
+  font-size: 24px;
+  color: #fff;
+  font-family: Montserrat;
+}
+.frameParent2,
+.navigationButton {
+  box-sizing: border-box;
+}
+.frameParent2 {
+  align-self: stretch;
+  background-color: var(--Primary-blue);
+  overflow: hidden;
+  padding: 374px 40px 56px;
+  position: relative;
+  isolation: isolate;
+}
+.navigationButton {
+  padding: 0 113px;
+}
+.buttonArrowSmallDark,
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonArrowSmallDark {
+  cursor: pointer;
+  border: 2px solid #1c52d8;
+  padding: 24px 40px;
+  background-color: transparent;
+  height: 64px;
+  width: 179px;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.text {
+  flex-shrink: 0;
+}
+.button {
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Montserrat;
+  color: #1c52d8;
+  text-align: left;
+}
+.iconarrow {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+@media screen and (max-width: 1350px) {
+  .h1 {
+    font-size: 38px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .h1 {
+    font-size: 38px;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .root {
+    justify-content: center;
+    grid-template-columns: repeat(2, minmax(336px, 582px));
+  }
+}
+@media screen and (max-width: 1000px) {
+  .h1 {
+    font-size: 38px;
+  }
+}
+@media screen and (max-width: 925px) {
+  .root {
+    gap: 24px;
+    grid-template-columns: minmax(336px, 1fr);
+  }
+  .frameParent2,
+  .locationsParent {
+    padding-top: 233px;
+    padding-bottom: 37px;
+    box-sizing: border-box;
+  }
+  .frameParent2 {
+    padding-top: 243px;
+    padding-bottom: 36px;
+  }
+}
+@media screen and (max-width: 725px) {
+  .root {
+    gap: 24px;
+    grid-template-columns: minmax(336px, 1fr);
+  }
+  .frameParent2,
+  .locationsParent {
+    padding-top: 233px;
+    padding-bottom: 37px;
+    box-sizing: border-box;
+  }
+  .frameParent2 {
+    padding-top: 243px;
+    padding-bottom: 36px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .parent {
+    gap: 33px;
+    min-width: 100%;
+  }
+  .h1 {
+    font-size: 29px;
+  }
+  .b,
+  .h3 {
+    font-size: 19px;
+  }
+  .frameParent {
+    min-width: 100%;
+  }
+  .frameGroup {
+    padding-top: 132px;
+    padding-bottom: 37px;
+    box-sizing: border-box;
+  }
+  .projectDetails {
+    gap: 16px;
+  }
+  .b2,
+  .h32 {
+    font-size: 19px;
+  }
+  .frameDiv {
+    gap: 16px;
+  }
+  .b3 {
+    font-size: 19px;
+  }
+  .frameSection {
+    gap: 29px;
+    min-width: 100%;
+  }
+  .navigationButton {
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+  .root {
+    gap: 24px;
+    grid-template-columns: minmax(336px, 1fr);
+  }
+  .frameParent2,
+  .locationsParent {
+    padding-top: 233px;
+    padding-bottom: 37px;
+    box-sizing: border-box;
+  }
+  .frameParent2 {
+    padding-top: 243px;
+    padding-bottom: 36px;
+  }
+}
