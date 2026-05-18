@@ -1,0 +1,87 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: var(--Primary-blue);
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  min-height: 100svh;
+  align-items: center;
+  padding: 120px clamp(20px, 5vw, 48px) 80px;
+  box-sizing: border-box;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.copy {
+  display: flex;
+  max-width: 760px;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: clamp(32px, 4.2vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.22;
+  color: var(--Gray-100);
+}
+
+.subtitle {
+  max-width: 555px;
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgb(245 245 245 / 0.75);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(24px, 6vw, 48px);
+}
+
+.button {
+  display: flex;
+  height: 78px;
+  width: min(256px, 100%);
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid rgb(245 245 245 / 0.35);
+  background-color: rgb(255 255 255 / 0.04);
+  padding: 0 32px;
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--Gray-100);
+  backdrop-filter: blur(12px);
+  transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: rgb(255 255 255 / 0.12);
+  border-color: rgb(245 245 245 / 0.55);
+}
+
+.buttonArrow {
+  font-size: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.button:hover .buttonArrow {
+  transform: translateX(4px);
+}

@@ -1,56 +1,15 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "@/styles/project1.module.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const Project1: NextPage = () => {
   return (
     <div className={styles.div}>
       <section className={styles.inner}>
         <div className={styles.headerParent}>
-          <header className={styles.header}>
-            <div className={styles.navbar}>
-              <div className={styles.logo}>
-                <div className={styles.largeLogo}>
-                  <Image
-                    className={styles.icon}
-                    loading="lazy"
-                    width={285}
-                    height={55.9}
-                    sizes="100vw"
-                    alt=""
-                    src="/2.svg"
-                  />
-                </div>
-              </div>
-              <nav className={styles.menu}>
-                <div className={styles.labelDark}>
-                  <div className={styles.text}>
-                    <div className={styles.button}>Проекты</div>
-                  </div>
-                </div>
-                <div className={styles.labelDark}>
-                  <div className={styles.text}>
-                    <div className={styles.button}>Новости</div>
-                  </div>
-                </div>
-                <div className={styles.labelDark}>
-                  <div className={styles.text}>
-                    <div className={styles.button}>Карьера</div>
-                  </div>
-                </div>
-                <div className={styles.labelDark}>
-                  <div className={styles.text}>
-                    <div className={styles.button}>О компании</div>
-                  </div>
-                </div>
-                <div className={styles.labelDark}>
-                  <div className={styles.text}>
-                    <div className={styles.button}>Контакты</div>
-                  </div>
-                </div>
-              </nav>
-            </div>
-          </header>
+          <Navbar />
           <div className={styles.parent}>
             <Image
               className={styles.icon2}
@@ -59,7 +18,7 @@ const Project1: NextPage = () => {
               height={571}
               sizes="100vw"
               alt=""
-              src="/1-1280-1@2x.png"
+              src="/projects/1.png"
             />
             <section className={styles.frameParent}>
               <div className={styles.group}>
@@ -103,14 +62,7 @@ const Project1: NextPage = () => {
             </div>
           </section>
           <div className={styles.screenshot71Parent}>
-            <Image
-              className={styles.screenshot71Icon}
-              width={1194}
-              height={849}
-              sizes="100vw"
-              alt=""
-              src="/Screenshot-7-1@2x.png"
-            />
+            
             <Image
               className={styles.image1Icon}
               loading="lazy"
@@ -118,7 +70,7 @@ const Project1: NextPage = () => {
               height={489}
               sizes="100vw"
               alt=""
-              src="/image-1@2x.png"
+              src="/projects/2.png"
             />
           </div>
         </div>
@@ -154,7 +106,7 @@ const Project1: NextPage = () => {
           height={1080}
           sizes="100vw"
           alt=""
-          src="/Frame-56@2x.png"
+          src="/projects/3.png"
         />
       </main>
       <section className={styles.slide1692}>
@@ -165,7 +117,7 @@ const Project1: NextPage = () => {
           height={1080}
           sizes="100vw"
           alt=""
-          src="/Frame-61@2x.png"
+          src="/projects/4.png"
         />
         <div className={styles.parent2}>
           <h1 className={styles.h1}>Состав работ</h1>
@@ -189,16 +141,17 @@ const Project1: NextPage = () => {
             <h1 className={styles.h14}>Новости о проекте</h1>
           </div>
           <div className={styles.div4}>
-            <Image
+            
+            <section className={styles.frameSection}>
+              <Image
               className={styles.item}
               loading="lazy"
               width={552}
               height={321}
               sizes="100vw"
               alt=""
-              src="/Frame-24@2x.png"
+              src="/projects/5.png"
             />
-            <section className={styles.frameSection}>
               <div className={styles.frame}>
                 <h3 className={styles.h312}>27.02.2026</h3>
               </div>
@@ -213,89 +166,7 @@ const Project1: NextPage = () => {
           </div>
         </div>
       </section>
-      <footer className={styles.footerWrapper}>
-        <div className={styles.footer}>
-          <div className={styles.logoParent}>
-            <div className={styles.logo2}>
-              <div className={styles.largeLogo2}>
-                <Image
-                  className={styles.icon}
-                  width={263}
-                  height={52}
-                  sizes="100vw"
-                  alt=""
-                  src="/2.svg"
-                />
-              </div>
-            </div>
-            <div className={styles.frameParent2}>
-              <div className={styles.infoParent}>
-                <div className={styles.info}>
-                  <div className={styles.labelDark}>
-                    <div className={styles.text}>
-                      <div className={styles.button}>
-                        Политика конфиденциальности
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.labelDark}>
-                    <div className={styles.text}>
-                      <div className={styles.button}>Использование Cookie</div>
-                    </div>
-                  </div>
-                  <div className={styles.labelDark}>
-                    <div className={styles.text}>
-                      <div className={styles.button}>
-                        Пользовательское соглашение
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.contacts}>
-                  <div className={styles.contact}>
-                    <div className={styles.email}>
-                      <div className={styles.text9}>
-                        <h3 className={styles.spaceFiller}>
-                          office@pik-mostovik.ru
-                        </h3>
-                      </div>
-                    </div>
-                    <h3 className={styles.spaceFiller}>+7 (3812) 67-60-11</h3>
-                  </div>
-                  <div className={styles.departmentLabelParent}>
-                    <h3 className={styles.departmentLabel}>
-                      +7 (3812) 67-60-12
-                    </h3>
-                    <div className={styles.div6}>Отдел кадров</div>
-                  </div>
-                  <div className={styles.adress}>
-                    <div className={styles.div7}>
-                      644050, город Омск, <br />
-                      проспект Мира, дом 5, корпус 5
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button className={styles.buttonTop}>
-                <div className={styles.iconarrow}>
-                  <Image
-                    className={styles.icon4}
-                    loading="lazy"
-                    width={20}
-                    height={20}
-                    sizes="100vw"
-                    alt=""
-                    src="/icon1.svg"
-                  />
-                </div>
-              </button>
-            </div>
-          </div>
-          <div className={styles.div8}>
-            © 2026 ООО ПИК  «Мостовик». Все права защищены
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

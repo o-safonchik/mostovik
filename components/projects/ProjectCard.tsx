@@ -19,6 +19,7 @@ export default function ProjectCard({
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
       className="group relative overflow-hidden"
+     
     >
       {/* Image */}
       <div className="relative aspect-[1.45/1] overflow-hidden">
@@ -42,7 +43,8 @@ export default function ProjectCard({
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 p-8 text-white">
+      <div className="absolute bottom-0 left-0 p-8 text-white" >
+        <a href="/projects/project1">
         <h3 className="max-w-[420px] text-[28px] font-semibold leading-tight">
           {title}
         </h3>
@@ -50,6 +52,7 @@ export default function ProjectCard({
         <p className="mt-4 text-[18px] text-white/80">
           {location}
         </p>
+        </a>
       </div>
     </motion.div>
   )

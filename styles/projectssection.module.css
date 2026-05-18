@@ -5,12 +5,15 @@
   max-width: 100%;
 }
 .root {
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 48px;
   line-height: normal;
   letter-spacing: normal;
+  box-sizing: border-box;
 }
 .parent {
   flex: 1;

@@ -2,10 +2,12 @@
   background-color: var(--Gray-200);
   max-width: 100%;
   overflow: hidden;
-  padding: 0 240px;
+  padding: 0 clamp(20px, 12vw, 240px);
   box-sizing: border-box;
   line-height: normal;
   letter-spacing: normal;
+  display: flex;
+  justify-content: center;
 }
 .footer,
 .footerContent,
@@ -14,8 +16,10 @@
   align-items: flex-start;
 }
 .footer {
-  height: 435px;
-  width: 1440px;
+  min-height: 435px;
+  height: auto;
+  width: 100%;
+  max-width: 1440px;
   background-color: var(--Gray-200);
   overflow: hidden;
   flex-shrink: 0;

@@ -1,17 +1,53 @@
+'use client';
+
 import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "@/styles/mainpage.module.css";
 import ProjectsSection from "./ProjectsSection";
-
+import { useEffect } from "react";
 
 const MainPage: NextPage = () => {
+  useEffect(() => {
+  const handleParallax = () => {
+    const sections = document.querySelectorAll(
+      `.${styles.slide1697}, .${styles.slide1698}`
+    );
+
+    sections.forEach((section) => {
+      const image = section.querySelector(
+        `.${styles.vvost97711Icon}`
+      ) as HTMLElement;
+
+      if (!image) return;
+
+      const rect = section.getBoundingClientRect();
+
+      const progress = rect.top / window.innerHeight;
+
+      const offset = progress * -180;
+
+      image.style.transform =
+        `translate3d(0, ${offset}px, 0) scale(1.35)`;
+    });
+  };
+
+  handleParallax();
+
+  window.addEventListener("scroll", handleParallax, {
+    passive: true,
+  });
+
+  return () => {
+    window.removeEventListener("scroll", handleParallax);
+  };
+}, []);
   return (
     <div className={styles.div}>
+      <section className={styles.slide1697Wrapper}>
       <section className={styles.slide1697}>
         <Image
           className={styles.vvost97711Icon}
-          width={1920}
-          height={1080}
+          fill
           sizes="100vw"
           alt=""
           src="/mainpage/bridgehero2.jpg"
@@ -21,36 +57,32 @@ const MainPage: NextPage = () => {
           <div className={styles.component1Parent}>
             <div className={styles.component1}>
               <b className={styles.b}>
-                <span>
+                <p>
                   30+
                   <br />
-                </span>
-                <span className={styles.span}>лет на рынке</span>
+                </p>
+                <p className={styles.span}>лет на рынке</p>
               </b>
             </div>
             <div className={styles.component2}>
-              <b className={styles.b2}>
-                <span className={styles.txt}>
-                  <span>
+              <b className={styles.b}>
+                  <p>
                     850+
                     <br />
-                  </span>
-                  <span className={styles.span}>
-                    объектов в России и за её пределами
-                  </span>
-                </span>
+                  </p>
+                  <p className={styles.span}>объектов в России и за её пределами</p>
               </b>
             </div>
           </div>
         </section>
       </section>
+       </section>
       <section className={styles.slide1698Wrapper}>
         <div className={styles.slide1698}>
           <Image
             className={styles.vvost97711Icon}
             loading="lazy"
-            width={1920}
-            height={1080}
+            fill
             sizes="100vw"
             alt=""
             src="/mainpage/bridgehero3.jpg"
@@ -77,98 +109,9 @@ const MainPage: NextPage = () => {
           </div>
         </div>
       </section>
-      <ProjectsSection />
-      {/* <section className={styles.inner}>
-        <div className={styles.frameParent}>
-          <section className={styles.frameSection}>
-            <h1 className={styles.h12}>ПРОЕКТЫ</h1>
-            <div className={styles.frameDiv}>
-              <Image
-                className={styles.icon8}
-                width={960}
-                height={600}
-                sizes="100vw"
-                alt=""
-                src="/mainpage/2_1280.png"
-              />
-              <div className={styles.parent2}>
-                <b className={styles.b3}>
-                  Горный многофункциональный комплекс на горе Ай-Петри
-                </b>
-                <h3 className={styles.h33}>Республика Крым</h3>
-              </div>
-            </div>
-          </section>
-          <section className={styles.frameGroup}>
-            <div className={styles.photo031Parent}>
-              <Image
-                className={styles.photo031Icon}
-                width={689}
-                height={405}
-                sizes="100vw"
-                alt=""
-                src="/mainpage/2.png"
-              />
-              <div className={styles.parent3}>
-                <b className={styles.b4}>
-                  Реконструкция надземного пешеходного перехода
-                </b>
-                <h3 className={styles.h34}>Астана, Казахстан</h3>
-              </div>
-            </div>
-            <div className={styles.parent4}>
-              <Image
-                className={styles.icon9}
-                width={445}
-                height={278}
-                sizes="100vw"
-                alt=""
-                src="/mainpage/4_ee.png"
-              />
-              <div className={styles.parent5}>
-                <b className={styles.b5}>
-                  Многоуровневая наземная открытая автостоянка
-                </b>
-                <h3 className={styles.h34}>Ленинградская область</h3>
-              </div>
-            </div>
-          </section>
-          <section className={styles.frameContainer}>
-            <div className={styles.parent6}>
-              <Image
-                className={styles.icon10}
-                loading="lazy"
-                width={1082}
-                height={676}
-                sizes="100vw"
-                alt=""
-                src="/mainpage/3.png"
-              />
-              <div className={styles.kindergartenData}>
-                <b className={styles.b4}>Строительство детского сада</b>
-                <h3 className={styles.h34}>Омская область</h3>
-              </div>
-            </div>
-            <div className={styles.buttonArrowSmallDarkWrapper}>
-              <button className={styles.buttonArrowSmallDark}>
-                <div className={styles.text6}>
-                  <div className={styles.button8}>Подробнее</div>
-                </div>
-                <div className={styles.iconarrow}>
-                  <Image
-                    className={styles.icon11}
-                    width={16}
-                    height={16}
-                    sizes="100vw"
-                    alt=""
-                    src="/icon1.svg"
-                  />
-                </div>
-              </button>
-            </div>
-          </section>
-        </div>
-      </section>*/}
+      <div className={styles.projectsSection}>
+        <ProjectsSection />
+      </div>
       <section className={styles.child}>
         <div className={styles.parent7}>
           <h2 className={styles.h12}>НОВОСТИ</h2>
@@ -185,7 +128,7 @@ const MainPage: NextPage = () => {
                       height={304}
                       sizes="100vw"
                       alt=""
-                      src="/image-4@2x.png"
+                      src="/mainpage/image4.png"
                     />
                     <div className={styles.div8}>
                       Начаты работы по проектированию объектов высокоскоростной
@@ -204,7 +147,7 @@ const MainPage: NextPage = () => {
                       height={304}
                       sizes="100vw"
                       alt=""
-                      src="/image-41@2x.png"
+                      src="/mainpage/image5.png"
                     />
                     <div className={styles.div8}>
                       Заключен государственный контракт на проектирование
@@ -223,7 +166,7 @@ const MainPage: NextPage = () => {
                         height={304}
                         sizes="100vw"
                         alt=""
-                        src="/image-42@2x.png"
+                        src="/mainpage/image6.png"
                       />
                       <div className={styles.div8}>
                         Получено положительное заключение экспертизы сметной
@@ -249,7 +192,7 @@ const MainPage: NextPage = () => {
                     height={16}
                     sizes="100vw"
                     alt=""
-                    src="/icon1.svg"
+                    src="/icons/arrowiconleft.svg"
                   />
                 </div>
               </button>
@@ -265,7 +208,7 @@ const MainPage: NextPage = () => {
                       height={77}
                       sizes="100vw"
                       alt=""
-                      src="/Icon-badge.svg"
+                      src="/icons/iconright.svg"
                     />
                     <Image
                       className={styles.iconBadge2}
@@ -273,7 +216,7 @@ const MainPage: NextPage = () => {
                       height={77}
                       sizes="100vw"
                       alt=""
-                      src="/Icon-badge.svg"
+                      src="/icons/iconleft.svg"
                     />
                   </div>
                 </div>
@@ -282,8 +225,8 @@ const MainPage: NextPage = () => {
           </div>
         </div>
       </section>
-      <section className={styles.inner2}>
-        <div className={styles.titleButtonParent}>
+      <section className={styles.heritageSection}>
+        <div className={styles.heritageInner}>
           <div className={styles.titleButton}>
             <h2 className={styles.h22}>НАСЛЕДИЕ</h2>
             <button className={styles.buttonArrowSmallDark}>
@@ -297,7 +240,7 @@ const MainPage: NextPage = () => {
                   height={16}
                   sizes="100vw"
                   alt=""
-                  src="/icon1.svg"
+                  src="/icons/arrowiconleft.svg"
                 />
               </div>
             </button>
@@ -307,11 +250,10 @@ const MainPage: NextPage = () => {
               <div className={styles.image5Parent}>
                 <Image
                   className={styles.image5Icon}
-                  width={619}
-                  height={387}
-                  sizes="100vw"
+                  fill
+                  sizes="(max-width: 1440px) 40vw, 500px"
                   alt=""
-                  src="/image-5@2x.png"
+                  src="/mainpage/image7.png"
                 />
                 <h3 className={styles.h310}>Приморский океанариум</h3>
               </div>
@@ -319,11 +261,10 @@ const MainPage: NextPage = () => {
                 <Image
                   className={styles.image6Icon}
                   loading="lazy"
-                  width={888}
-                  height={555}
-                  sizes="100vw"
+                  fill
+                  sizes="(max-width: 1440px) 55vw, 700px"
                   alt=""
-                  src="/image-6@2x.png"
+                  src="/mainpage/image8.png"
                 />
                 <h2 className={styles.h23}>Мост на остров Русский</h2>
               </div>
@@ -332,11 +273,10 @@ const MainPage: NextPage = () => {
               <div className={styles.image8Parent}>
                 <Image
                   className={styles.image8Icon}
-                  width={887}
-                  height={554}
-                  sizes="100vw"
+                  fill
+                  sizes="(max-width: 1440px) 55vw, 700px"
                   alt=""
-                  src="/image-8@2x.png"
+                  src="/mainpage/image9.png"
                 />
                 <h2 className={styles.h24}>Самсоновский мост</h2>
               </div>
@@ -344,11 +284,10 @@ const MainPage: NextPage = () => {
                 <Image
                   className={styles.image7Icon}
                   loading="lazy"
-                  width={803}
-                  height={446}
-                  sizes="100vw"
+                  fill
+                  sizes="(max-width: 1440px) 40vw, 500px"
                   alt=""
-                  src="/image-7@2x.png"
+                  src="/mainpage/image10.png"
                 />
                 <h2 className={styles.h310}>Успенский собор</h2>
               </div>

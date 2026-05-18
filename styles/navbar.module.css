@@ -1,0 +1,86 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 100%;
+  transition:
+    background-color 0.5s,
+    border-color 0.5s,
+    backdrop-filter 0.5s;
+}
+
+.headerTransparent {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.headerScrolled {
+  background-color: rgb(255 255 255 / 0.92);
+  border-bottom: 1px solid rgb(0 0 0 / 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  display: flex;
+  height: 90px;
+  width: 100%;
+  max-width: 1400px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 48px);
+  box-sizing: border-box;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  height: 56px;
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.logoImage {
+  object-fit: contain;
+  object-position: left center;
+  transition: filter 0.5s;
+}
+
+.logoImageLight {
+  filter: brightness(0) invert(1);
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.navLink {
+  font-family: var(--font-montserrat), Montserrat, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.navLink:hover {
+  opacity: 0.8;
+}
+
+.navLinkLight {
+  color: #ffffff;
+}
+
+.navLinkDark {
+  color: var(--Primary-blue);
+}

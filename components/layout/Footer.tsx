@@ -76,7 +76,7 @@ const Footer: NextPage = () => {
                   height={20}
                   sizes="100vw"
                   alt=""
-                  src="/icons.svg"
+                  src="/icons/arrowicontop.svg"
                 />
               </div>
             </button>

@@ -16,15 +16,15 @@ const ProjectsSection: NextPage = () => {
               height={561}
               sizes="100vw"
               alt=""
-              src="/2-1280-1@2x.png"
+              src="/mainpage/2_1280.png"
             />
             <div className={styles.locationsChild} />
           </div>
-          <div className={styles.group}>
-            <b className={styles.b}>
+          <div className={styles.projectDetails}>
+            <b className={styles.b2}>
               Горный многофункциональный комплекс на горе Ай-Петри
             </b>
-            <h3 className={styles.h3}>Республика Крым</h3>
+            <h3 className={styles.h32}>Республика Крым</h3>
           </div>
         </div>
       </section>
@@ -38,7 +38,7 @@ const ProjectsSection: NextPage = () => {
               height={391}
               sizes="100vw"
               alt=""
-              src="/photo-03-1@2x.png"
+              src="/mainpage/2.png"
             />
             <div className={styles.locationsChild} />
           </div>
@@ -58,7 +58,7 @@ const ProjectsSection: NextPage = () => {
               height={278}
               sizes="100vw"
               alt=""
-              src="/4-1280-1@2x.png"
+              src="/mainpage/4_ee.png"
             />
             <div className={styles.locationsChild} />
           </div>
@@ -80,7 +80,7 @@ const ProjectsSection: NextPage = () => {
               height={561}
               sizes="100vw"
               alt=""
-              src="/01-1280-1@2x.png"
+              src="/mainpage/3.png"
             />
             <div className={styles.locationsChild} />
           </div>
@@ -94,7 +94,14 @@ const ProjectsSection: NextPage = () => {
             <div className={styles.text}>
               <div className={styles.button}>Подробнее</div>
             </div>
-            <input className={styles.iconarrow} type="checkbox" />
+            <Image
+                    className={styles.icon11}
+                    width={16}
+                    height={16}
+                    sizes="100vw"
+                    alt=""
+                    src="/icons/arrowiconleft.svg"
+                  />
           </button>
         </div>
       </section>
