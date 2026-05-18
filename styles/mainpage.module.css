@@ -833,21 +833,24 @@
 }
 .child {
   align-self: stretch;
+  display: flex;
   justify-content: center;
   padding: 0 clamp(20px, 5vw, 40px) 196px;
   box-sizing: border-box;
+
   text-align: left;
   font-size: 48px;
   color: var(--Primary-blue);
   font-family: Montserrat;
 }
+
 .parent7 {
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
-  overflow: hidden;
+
+  display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 80px;
 }
 .frameParent2 {
   margin-left: -1px;
@@ -1833,4 +1836,314 @@
 .buttonArrowSmallDark,
 .buttonArrowSmallDark2 {
   will-change: transform;
+}
+/* ===== NEWS SECTION ===== */
+
+.child {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  padding: 0 clamp(20px, 5vw, 40px) 196px;
+  box-sizing: border-box;
+
+  text-align: left;
+  font-size: 48px;
+  color: var(--Primary-blue);
+  font-family: Montserrat;
+}
+
+.parent7 {
+  width: 100%;
+  max-width: 1440px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.h12 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+/* ===== GRID ===== */
+
+.frameWrapper {
+  width: 100%;
+}
+
+.topImageParent {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  width: 100%;
+}
+
+/* ===== CARDS ===== */
+
+.topImage,
+.bottomImage,
+.parent8 {
+  background: var(--Primary-blue);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px;
+  box-sizing: border-box;
+
+  min-height: 100%;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.topImage:hover,
+.bottomImage:hover,
+.parent8:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== DATE ===== */
+
+.h37,
+.h38 {
+  margin: 0 0 20px;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  color: #fff;
+}
+
+/* ===== IMAGE WRAPPER ===== */
+
+.image4Parent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+}
+
+/* ===== IMAGES ===== */
+
+.image4Icon,
+.image4Icon2 {
+  position: relative !important;
+
+  width: 100% !important;
+  height: 280px !important;
+
+  max-width: 100%;
+
+  object-fit: cover;
+
+  top: unset !important;
+  left: unset !important;
+  right: unset !important;
+
+  margin: 0 !important;
+
+  transition:
+    transform 0.6s ease,
+    filter 0.4s ease;
+}
+
+.topImage:hover .image4Icon,
+.bottomImage:hover .image4Icon2,
+.parent8:hover .image4Icon2 {
+  transform: scale(1.03);
+
+  filter: brightness(1.05);
+}
+
+/* ===== TEXT ===== */
+
+.div8 {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 600;
+
+  color: #fff;
+}
+
+/* ===== BOTTOM CONTROLS ===== */
+
+.buttonArrowSmallDarkParent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 32px;
+
+  margin-top: 20px;
+}
+
+/* ===== BUTTON ===== */
+
+.buttonArrowSmallDark2 {
+  cursor: pointer;
+
+  border: 2px solid #1c52d8;
+
+  background: transparent;
+
+  min-width: 220px;
+  height: 64px;
+
+  padding: 0 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  flex-shrink: 0;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.buttonArrowSmallDark2:hover {
+  transform: translateY(-4px);
+
+  background: var(--Primary-blue);
+
+  box-shadow: 0 12px 30px rgba(28, 82, 216, 0.2);
+}
+
+.text6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button8 {
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #1c52d8;
+
+  white-space: nowrap;
+}
+
+.buttonArrowSmallDark2:hover .button8 {
+  color: #fff;
+}
+
+.iconarrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon11 {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+}
+
+.buttonArrowSmallDark2:hover .icon11 {
+  filter: brightness(0) invert(1);
+}
+
+/* ===== PAGINATION ===== */
+
+.frameWrapper2 {
+  display: flex;
+  align-items: center;
+}
+
+.frameParent3 {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.parkingDetails {
+  margin: 0;
+
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.iconBadgeParent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.iconBadge,
+.iconBadge2 {
+  cursor: pointer;
+
+  width: 64px;
+  height: 64px;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.iconBadge:hover,
+.iconBadge2:hover {
+  transform: scale(1.08);
+}
+
+/* ===== MOBILE ===== */
+
+@media screen and (max-width: 1100px) {
+  .topImageParent {
+    grid-template-columns: 1fr;
+  }
+
+  .buttonArrowSmallDarkParent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .child {
+    padding-bottom: 100px;
+  }
+
+  .parent7 {
+    gap: 48px;
+  }
+
+  .h12 {
+    font-size: 32px;
+  }
+
+  .image4Icon,
+  .image4Icon2 {
+    height: 220px !important;
+  }
+
+  .div8 {
+    font-size: 16px;
+  }
+
+  .buttonArrowSmallDark2 {
+    width: 100%;
+  }
+
+  .frameParent3 {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
