@@ -27,10 +27,19 @@ model Project {
   id              String   @id @default(uuid()) @db.Uuid
   title           String
   slug            String   @unique
-  images          String[]
+  previewImage    String   @map("preview_image")
+  finished        Boolean  @default(false) 
+  customer        String
+  workType        String   @map("work_type")
+  startYear       Int      @map("start_year")
+  endYear         Int?     @map("end_year")
   description     String
+  stages          String[]
+  stagesImage     String   @map("stages_image")
   tags            String[]
   characteristics Json
+  charactImage    String   @map("charact_image")
+  expertResults   String[] @map("expert_results")
   locationName    String   @map("location_name")
   latitude        Float
   longitude       Float
@@ -64,15 +73,17 @@ model Vacancy {
   id              String   @id @default(uuid()) @db.Uuid
   title           String
   slug            String   @unique
-  description     String
-  employmentType  String   @map("employment_type")
-  department      String
-  location        String
-  salary          String
-  keywords        String[]
+  experience      String
+  salary          Int
+  employment      String
+  responsibilities String
+  requirements     String
+  skills          String[]
+  advantages      String
   publishDate     DateTime @map("publish_date")
   metaTitle       String   @map("meta_title")
   metaDescription String   @map("meta_description")
+  createdAt       DateTime @default(now()) @map("created_at")
 
   applications Application[]
 

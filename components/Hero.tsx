@@ -26,11 +26,11 @@ export default function Hero() {
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end">
         <Image
-          src="/logo.svg"
+          src="/Logo.svg"
           alt=""
           width={1200}
           height={1200}
-          className="scale-[1.4] object-contain opacity-[0.1]"
+          className="scale-[1] object-contain opacity-[0.1]"
           aria-hidden
         />
       </div>
@@ -56,7 +56,7 @@ export default function Hero() {
 
             <p className={styles.subtitle}>
               Инновационные инженерные решения для различных задач в области
-              транспортного строительства
+              проектирования и строительства
             </p>
 
             <div className={styles.actions}>

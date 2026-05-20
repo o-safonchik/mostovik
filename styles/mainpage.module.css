@@ -366,7 +366,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: clamp(40px, 8vw, 145px);
+  gap: 20px;
   max-width: 100%;
   font-size: clamp(48px, 8vw, 94.6px);
   color: var(--Gray-200);
@@ -1686,6 +1686,9 @@
 
 .parent {
   animation: fadeRight 1s ease;
+  justify-self: center;
+  padding: 30;
+  scale: 1;
 }
 
 .group {
