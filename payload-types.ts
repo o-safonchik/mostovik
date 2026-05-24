@@ -72,23 +72,17 @@ export interface Config {
     projects: Project;
     news: News;
     'payload-kv': PayloadKv;
-    'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {
-    'payload-folders': {
-      documentsAndFolders: 'payload-folders' | 'media';
-    };
-  };
+  collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     news: NewsSelect<false> | NewsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
-    'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -159,7 +153,6 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  folder?: (number | null) | FolderInterface;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -232,32 +225,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders".
- */
-export interface FolderInterface {
-  id: number;
-  name: string;
-  folder?: (number | null) | FolderInterface;
-  documentsAndFolders?: {
-    docs?: (
-      | {
-          relationTo?: 'payload-folders';
-          value: number | FolderInterface;
-        }
-      | {
-          relationTo?: 'media';
-          value: number | Media;
-        }
-    )[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  folderType?: 'media'[] | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
@@ -270,18 +237,21 @@ export interface Project {
   workType: string;
   startYear: number;
   endYear?: number | null;
-  description?: string | null;
-  stages: {
-    item?: string | null;
-    id?: string | null;
-  }[];
-  stagesImage: number | Media;
+  locationName: string;
+  latitude: number;
+  longitude: number;
   tags?:
     | {
         tag?: string | null;
         id?: string | null;
       }[]
     | null;
+  description?: string | null;
+  stages: {
+    item?: string | null;
+    id?: string | null;
+  }[];
+  stagesImage: number | Media;
   characteristics: {
     item?: string | null;
     id?: string | null;
@@ -293,9 +263,6 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
-  locationName: string;
-  latitude: number;
-  longitude: number;
   metaTitle: string;
   metaDescription: string;
   news?: (number | News)[] | null;
@@ -372,10 +339,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news';
         value: number | News;
-      } | null)
-    | ({
-        relationTo: 'payload-folders';
-        value: number | FolderInterface;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -447,7 +410,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  folder?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -547,6 +509,15 @@ export interface ProjectsSelect<T extends boolean = true> {
   workType?: T;
   startYear?: T;
   endYear?: T;
+  locationName?: T;
+  latitude?: T;
+  longitude?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
   description?: T;
   stages?:
     | T
@@ -555,12 +526,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   stagesImage?: T;
-  tags?:
-    | T
-    | {
-        tag?: T;
-        id?: T;
-      };
   characteristics?:
     | T
     | {
@@ -574,9 +539,6 @@ export interface ProjectsSelect<T extends boolean = true> {
         item?: T;
         id?: T;
       };
-  locationName?: T;
-  latitude?: T;
-  longitude?: T;
   metaTitle?: T;
   metaDescription?: T;
   news?: T;
@@ -606,18 +568,6 @@ export interface NewsSelect<T extends boolean = true> {
 export interface PayloadKvSelect<T extends boolean = true> {
   key?: T;
   data?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payload-folders_select".
- */
-export interface PayloadFoldersSelect<T extends boolean = true> {
-  name?: T;
-  folder?: T;
-  documentsAndFolders?: T;
-  folderType?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

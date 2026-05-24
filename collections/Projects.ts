@@ -62,6 +62,36 @@ export const Projects = {
       required: false,
     },
     {
+      name: 'locationName',
+      label: 'Название места',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'latitude',
+      label: 'Широта',
+      type: 'number',
+      required: true,
+    },
+    {
+      name: 'longitude',
+      label: 'Долгота',
+      type: 'number',
+      required: true,
+    },
+    {
+      name: 'tags',
+      label: 'Теги',
+      type: 'array',
+      fields: [
+        {
+          name: 'tag',
+          label: 'Тег',
+          type: 'text',
+        },
+      ],
+    },
+    {
       name: 'description',
       label: 'Описание проекта',
       type: 'textarea',
@@ -81,22 +111,10 @@ export const Projects = {
     },
     {
       name: 'stagesImage',
-      label: 'Изображение этапов',
+      label: 'Иллюстрация к блоку этапов',
       type: 'upload',
       relationTo: 'media',
       required: true,
-    },
-    {
-      name: 'tags',
-      label: 'Теги',
-      type: 'array',
-      fields: [
-        {
-          name: 'tag',
-          label: 'Тег',
-          type: 'text',
-        },
-      ],
     },
     {
       name: 'characteristics',
@@ -113,7 +131,7 @@ export const Projects = {
     },
     {
       name: 'charactImage',
-      label: 'Изображение характеристик',
+      label: 'Иллюстация к блоку характеристик',
       type: 'upload',
       relationTo: 'media',
       required: true,
@@ -129,24 +147,6 @@ export const Projects = {
           type: 'text',
         },
       ],
-    },
-    {
-      name: 'locationName',
-      label: 'Название места',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'latitude',
-      label: 'Широта',
-      type: 'number',
-      required: true,
-    },
-    {
-      name: 'longitude',
-      label: 'Долгота',
-      type: 'number',
-      required: true,
     },
     {
       name: 'metaTitle',
@@ -168,4 +168,18 @@ export const Projects = {
       hasMany: true,
     },
   ],
+  timestamps: true,
+  hooks: {
+  beforeChange: [
+    ({ data }) => {
+      if (data.title) {
+        data.slug = data.title
+          .toLowerCase()
+          .replaceAll(' ', '-')
+      }
+
+      return data
+    },
+  ],
+}
 }

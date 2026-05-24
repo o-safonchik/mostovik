@@ -82,4 +82,5 @@ export const News = {
       relationTo: 'projects',
     },
   ],
+  timestamps: true,
 }

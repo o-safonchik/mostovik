@@ -2,6 +2,32 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Prerequisites
+
+- Node.js 18+ and pnpm 11.1.1+
+- PostgreSQL database running
+
+### Setup
+
+1. Install dependencies:
+
+```bash
+pnpm install
+```
+
+2. Create the required directories (automatically handled, but here for reference):
+
+```bash
+mkdir -p public/media
+```
+
+3. Create `.env.local` file with your database connection string:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/mostovik_db
+PAYLOAD_SECRET=your-secret-key-here
+```
+
 First, run the development server:
 
 ```bash
@@ -17,6 +43,17 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+## Media Upload
+
+The admin panel allows uploading media files. These are stored in the `public/media` directory and processed with multiple image sizes:
+- thumbnail (300px)
+- square (500x500px)
+- small (600px)
+- medium (900px)
+- large (1400px)
+- xlarge (1920px)
+- og (1200x630px)
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

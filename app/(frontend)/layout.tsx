@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
-import { TRPCProvider } from "@/lib/trpc/provider";
 import { Inter, Montserrat } from "next/font/google";
 
 const inter = Inter({
@@ -31,7 +30,7 @@ export default function RootLayout({
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-full flex flex-col">
-        <TRPCProvider>{children}</TRPCProvider>
+        {children}
       </body>
     </html>
   );

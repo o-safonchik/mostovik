@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { useState } from "react"
-import { trpc } from "@/lib/trpc/client"
 
 type VacancyFormProps = {
   vacancyId: string
@@ -16,9 +15,36 @@ export default function VacancyForm({ vacancyId }: VacancyFormProps) {
   const [message, setMessage] = useState("")
   const [resume, setResume] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const createApplication = trpc.application.create.useMutation({
-    onSuccess: () => {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch("/my-route", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          vacancyId,
+          surname,
+          name,
+          email,
+          phone,
+          resume,
+          message,
+        }),
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Ошибка при отправке формы")
+      }
+
       setSubmitted(true)
       setSurname("")
       setName("")
@@ -26,20 +52,11 @@ export default function VacancyForm({ vacancyId }: VacancyFormProps) {
       setPhone("")
       setMessage("")
       setResume("")
-    },
-  })
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    createApplication.mutate({
-      vacancyId,
-      surname,
-      name,
-      email,
-      phone,
-      resume,
-      message,
-    })
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Неизвестная ошибка")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -179,15 +196,15 @@ export default function VacancyForm({ vacancyId }: VacancyFormProps) {
               />
             </div>
 
-            {createApplication.error ? (
+            {error ? (
               <p className="text-[14px] text-red-600">
-                {createApplication.error.message}
+                {error}
               </p>
             ) : null}
 
             <button
               type="submit"
-              disabled={createApplication.isPending}
+              disabled={isLoading}
               className="
                 mt-4
                 flex
@@ -209,7 +226,7 @@ export default function VacancyForm({ vacancyId }: VacancyFormProps) {
                 disabled:opacity-50
               "
             >
-              {createApplication.isPending ? "Отправка…" : "Отправить →"}
+              {isLoading ? "Отправка…" : "Отправить →"}
             </button>
           </div>
         </form>

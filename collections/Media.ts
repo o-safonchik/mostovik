@@ -9,7 +9,10 @@ const dirname = path.dirname(filename)
 
 export const Media = {
   slug: 'media',
-  folders: true,
+  type: 'uploadDetails',
+  admin: {
+    useAsTitle: 'filename',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -25,7 +28,8 @@ export const Media = {
   ],
   upload: {
     // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
-    staticDir: path.resolve(dirname, '../../public/media'),
+    staticDir: path.join(path.dirname(dirname), 'public/media'),
+    staticURL: '/media',
     adminThumbnail: 'thumbnail',
     focalPoint: true,
     imageSizes: [

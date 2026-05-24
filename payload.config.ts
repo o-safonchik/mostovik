@@ -33,4 +33,9 @@ export default buildConfig({
   }),
   sharp,
   plugins: [],
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || "http://localhost:3000",
+  routes: {
+    api: "/api",
+    admin: "/admin",
+  },
 });
