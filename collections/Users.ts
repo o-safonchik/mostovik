@@ -1,7 +1,14 @@
-import type { CollectionConfig } from 'payload'
+import { authenticated } from '../access/authenticated.ts';
 
-export const Users: CollectionConfig = {
+export const Users = {
   slug: 'users',
+  access: {
+    admin: authenticated,
+    create: authenticated,
+    delete: authenticated,
+    read: authenticated,
+    update: authenticated,
+  },
   admin: {
     useAsTitle: 'email',
   },
@@ -10,4 +17,5 @@ export const Users: CollectionConfig = {
     // Email added by default
     // Add more fields as needed
   ],
+  timestamps: true,
 }
