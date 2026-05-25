@@ -44,7 +44,7 @@ export default function ProjectCard({
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 p-8 text-white" >
-        <a href="/projects/project1">
+        <a href="/projects/inzhenernye-izyskaniya-dlya-obuekta-gornyj-mnogofunkcionalnyj-kompleks-na-gore-aj-petri">
         <h3 className="max-w-[420px] text-[28px] font-semibold leading-tight">
           {title}
         </h3>

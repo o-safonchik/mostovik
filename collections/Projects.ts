@@ -1,8 +1,23 @@
+import slugify from 'slugify'
+
+import { 
+  BlocksFeature, 
+  FixedToolbarFeature, 
+  HeadingFeature, 
+  HorizontalRuleFeature, 
+  InlineToolbarFeature, 
+  lexicalEditor 
+} from '@payloadcms/richtext-lexical'
+import { Banner } from '../blocks/Banner/config.ts'
+import { Code } from '../blocks/Code/config.ts'
+import { MediaBlock } from '../blocks/MediaBlock/config.ts'
+
 import { anyone } from '../access/anyone.ts'
 import { authenticated } from '../access/authenticated.ts'
 
 export const Projects = {
   slug: 'projects',
+  timestamps: true,
   access: {
       create: authenticated,
       delete: authenticated,
@@ -21,39 +36,51 @@ export const Projects = {
       label: 'URL проекта',
       type: 'text',
       unique: true,
-      required: true,
+      required: false,
     },
     {
       name: 'previewImage',
       label: 'Изображение проекта',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
     {
       name: 'finished',
       label: 'Проект завершен',
       type: 'checkbox',
       defaultValue: false,
-      required: true,
+      required: false,
+    },
+    {
+      name: 'description',
+      label: 'Описание проекта',
+      type: 'textarea',
     },
     {
       name: 'customer',
       label: 'Заказчик',
       type: 'text',
-      required: true,
+      required: false,
     },
     {
       name: 'workType',
-      label: 'Тип работ',
-      type: 'text',
-      required: true,
+      label: 'Типы работ в проекте',
+      type: 'array',
+      required: false,
+      fields: [
+        {
+          name: 'item',
+          label: 'Тип работ',
+          type: 'text',
+        },
+      ],
     },
     {
       name: 'startYear',
       label: 'Год начала',
       type: 'number',
-      required: true,
+      required: false,
     },
     {
       name: 'endYear',
@@ -63,78 +90,70 @@ export const Projects = {
     },
     {
       name: 'locationName',
-      label: 'Название места',
+      label: 'Регион',
       type: 'text',
-      required: true,
+      required: false,
     },
     {
       name: 'latitude',
       label: 'Широта',
       type: 'number',
-      required: true,
+      required: false,
     },
     {
       name: 'longitude',
       label: 'Долгота',
       type: 'number',
-      required: true,
-    },
-    {
-      name: 'tags',
-      label: 'Теги',
-      type: 'array',
-      fields: [
-        {
-          name: 'tag',
-          label: 'Тег',
-          type: 'text',
-        },
-      ],
-    },
-    {
-      name: 'description',
-      label: 'Описание проекта',
-      type: 'textarea',
+      required: false,
     },
     {
       name: 'stages',
-      label: 'Этапы проекта',
-      type: 'array',
-      required: true,
-      fields: [
-        {
-          name: 'item',
-          label: 'Этап',
-          type: 'text',
+      label: 'Состав проекта',
+      required: false,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+            HorizontalRuleFeature(),
+          ]
         },
-      ],
+      }),
     },
     {
       name: 'stagesImage',
-      label: 'Иллюстрация к блоку этапов',
+      label: 'Иллюстрация к блоку состава проекта',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
     {
       name: 'characteristics',
       label: 'Характеристики',
-      type: 'array',
-      required: true,
-      fields: [
-        {
-          name: 'item',
-          label: 'Характеристика',
-          type: 'text',
+      required: false,
+      type: 'richText',
+      editor: lexicalEditor({
+        features: ({ rootFeatures }) => {
+          return [
+            ...rootFeatures,
+            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            FixedToolbarFeature(),
+            InlineToolbarFeature(),
+            HorizontalRuleFeature(),
+          ]
         },
-      ],
+      }),
     },
     {
       name: 'charactImage',
       label: 'Иллюстация к блоку характеристик',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
     {
       name: 'expertResults',
@@ -168,18 +187,18 @@ export const Projects = {
       hasMany: true,
     },
   ],
-  timestamps: true,
   hooks: {
-  beforeChange: [
-    ({ data }) => {
-      if (data.title) {
-        data.slug = data.title
-          .toLowerCase()
-          .replaceAll(' ', '-')
+    beforeChange: [
+      ({ data }) => {
+      if (data.title && !data.slug) {
+      data.slug = slugify(data.title, {
+        lower: true,
+        strict: true,
+        locale: 'ru',
+      })
       }
-
       return data
-    },
-  ],
-}
+     },
+    ],
+  }
 }

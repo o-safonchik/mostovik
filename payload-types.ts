@@ -230,33 +230,54 @@ export interface Media {
 export interface Project {
   id: number;
   title: string;
-  slug: string;
-  previewImage: number | Media;
-  finished: boolean;
-  customer: string;
-  workType: string;
-  startYear: number;
-  endYear?: number | null;
-  locationName: string;
-  latitude: number;
-  longitude: number;
-  tags?:
+  slug?: string | null;
+  previewImage?: (number | null) | Media;
+  finished?: boolean | null;
+  description?: string | null;
+  customer?: string | null;
+  workType?:
     | {
-        tag?: string | null;
+        item?: string | null;
         id?: string | null;
       }[]
     | null;
-  description?: string | null;
-  stages: {
-    item?: string | null;
-    id?: string | null;
-  }[];
-  stagesImage: number | Media;
-  characteristics: {
-    item?: string | null;
-    id?: string | null;
-  }[];
-  charactImage: number | Media;
+  startYear?: number | null;
+  endYear?: number | null;
+  locationName?: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  stages?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  stagesImage?: (number | null) | Media;
+  characteristics?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  charactImage?: (number | null) | Media;
   expertResults?:
     | {
         item?: string | null;
@@ -505,33 +526,22 @@ export interface ProjectsSelect<T extends boolean = true> {
   slug?: T;
   previewImage?: T;
   finished?: T;
+  description?: T;
   customer?: T;
-  workType?: T;
+  workType?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
   startYear?: T;
   endYear?: T;
   locationName?: T;
   latitude?: T;
   longitude?: T;
-  tags?:
-    | T
-    | {
-        tag?: T;
-        id?: T;
-      };
-  description?: T;
-  stages?:
-    | T
-    | {
-        item?: T;
-        id?: T;
-      };
+  stages?: T;
   stagesImage?: T;
-  characteristics?:
-    | T
-    | {
-        item?: T;
-        id?: T;
-      };
+  characteristics?: T;
   charactImage?: T;
   expertResults?:
     | T
