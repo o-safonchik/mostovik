@@ -43,75 +43,7 @@ const MainPage: NextPage = () => {
 }, []);
   return (
     <div className={styles.div}>
-      <section className={styles.slide1697Wrapper}>
-      <section className={styles.slide1697}>
-        <Image
-          className={styles.vvost97711Icon}
-          fill
-          sizes="100vw"
-          alt=""
-          src="/mainpage/bridgehero2.jpg"
-        />
-        <section className={styles.parent}>
-          <h3 className={styles.h3}>Экспертиза проверенная временем</h3>
-          <div className={styles.component1Parent}>
-            <div className={styles.component1}>
-              <b className={styles.b}>
-                <p>
-                  30+
-                  <br />
-                </p>
-                <p className={styles.span}>лет на рынке</p>
-              </b>
-            </div>
-            <div className={styles.component2}>
-              <b className={styles.b}>
-                  <p>
-                    850+
-                    <br />
-                  </p>
-                  <p className={styles.span}>объектов в России и за её пределами</p>
-              </b>
-            </div>
-          </div>
-        </section>
-      </section>
-       </section>
-      <section className={styles.slide1698Wrapper}>
-        <div className={styles.slide1698}>
-          <Image
-            className={styles.vvost97711Icon}
-            loading="lazy"
-            fill
-            sizes="100vw"
-            alt=""
-            src="/mainpage/bridgehero3.jpg"
-          />
-          <div className={styles.group}>
-            <h3 className={styles.h32}>
-              Выполняем комплексные работы по проектированию:
-            </h3>
-            <div className={styles.container}>
-              <div className={styles.div3}>
-                Объектов транспортной инфраструктуры
-              </div>
-              <div className={styles.div4}>
-                Объектов промышленного и гражданского назначения
-              </div>
-              <div className={styles.div4}>
-                Специальных объектов, объектов коммунального назначения
-              </div>
-              <div className={styles.div6}>
-                Объектов нефтехимии и энергетики
-              </div>
-              <div className={styles.div7}>Гидротехнических сооружений</div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <div className={styles.projectsSection}>
         <ProjectsSection />
-      </div>
       <section className={styles.child}>
         <div className={styles.parent7}>
           <h2 className={styles.h12}>НОВОСТИ</h2>

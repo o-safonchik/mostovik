@@ -10,6 +10,8 @@ import { Media } from "./collections/Media.ts";
 import { Projects } from "./collections/Projects.ts";
 import { News } from "./collections/News.ts";
 
+import { Homepage } from './globals/Homepage.ts';
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -21,6 +23,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Projects, News],
+  globals: [Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

@@ -17,6 +17,7 @@ import { authenticated } from '../access/authenticated.ts';
 
 export const News = {
   slug: 'news',
+  label: 'Новости',
   access: {
         create: authenticated,
         delete: authenticated,
