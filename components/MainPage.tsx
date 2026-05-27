@@ -3,14 +3,14 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "@/styles/mainpage.module.css";
-import ProjectsMapYandex from "./ProjectsMapYandex";
+import ProjectsMap from "./ProjectsMap";
 import ProjectsSection from "./ProjectsSection";
 
 const MainPage: NextPage = () => {
   
   return (
     <div className={styles.div}>
-        <ProjectsMapYandex />
+        <ProjectsMap />
          <ProjectsSection />
       <section className={styles.child}>
         <div className={styles.parent7}>
