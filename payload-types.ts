@@ -319,7 +319,7 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
-  metaTitle?: string | null;
+  metaTitle: string;
   metaDescription?: string | null;
   project?: (number | null) | Project;
   updatedAt: string;

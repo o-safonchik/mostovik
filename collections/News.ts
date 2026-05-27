@@ -13,6 +13,7 @@ import { MediaBlock } from '../blocks/MediaBlock/config.ts'
 
 import { anyone } from '../access/anyone.ts';
 import { authenticated } from '../access/authenticated.ts';
+import slugify from 'slugify';
 
 
 export const News = {
@@ -70,6 +71,7 @@ export const News = {
       name: 'metaTitle',
       label: 'Заголовок для SEO',
       type: 'text',
+      required: true,
     },
     {
       name: 'metaDescription',
@@ -83,5 +85,19 @@ export const News = {
       relationTo: 'projects',
     },
   ],
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+      if (data.title && !data.slug) {
+      data.slug = slugify(data.title, {
+        lower: true,
+        strict: true,
+        locale: 'ru',
+      })
+      }
+      return data
+     },
+    ],
+  },
   timestamps: true,
 }

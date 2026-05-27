@@ -3,47 +3,15 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "@/styles/mainpage.module.css";
+import ProjectsMapYandex from "./ProjectsMapYandex";
 import ProjectsSection from "./ProjectsSection";
-import { useEffect } from "react";
 
 const MainPage: NextPage = () => {
-  useEffect(() => {
-  const handleParallax = () => {
-    const sections = document.querySelectorAll(
-      `.${styles.slide1697}, .${styles.slide1698}`
-    );
-
-    sections.forEach((section) => {
-      const image = section.querySelector(
-        `.${styles.vvost97711Icon}`
-      ) as HTMLElement;
-
-      if (!image) return;
-
-      const rect = section.getBoundingClientRect();
-
-      const progress = rect.top / window.innerHeight;
-
-      const offset = progress * -180;
-
-      image.style.transform =
-        `translate3d(0, ${offset}px, 0) scale(1.35)`;
-    });
-  };
-
-  handleParallax();
-
-  window.addEventListener("scroll", handleParallax, {
-    passive: true,
-  });
-
-  return () => {
-    window.removeEventListener("scroll", handleParallax);
-  };
-}, []);
+  
   return (
     <div className={styles.div}>
-        <ProjectsSection />
+        <ProjectsMapYandex />
+         <ProjectsSection />
       <section className={styles.child}>
         <div className={styles.parent7}>
           <h2 className={styles.h12}>НОВОСТИ</h2>
