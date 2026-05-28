@@ -302,7 +302,7 @@ export interface News {
   id: number;
   title: string;
   slug: string;
-  publishDate?: string | null;
+  publishDate: string;
   previewImage?: (number | null) | Media;
   content?: {
     root: {

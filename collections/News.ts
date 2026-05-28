@@ -43,6 +43,7 @@ export const News = {
       name: 'publishDate',
       label: 'Дата публикации',
       type: 'date',
+      required: true,
     },
     {
       name: 'previewImage',
@@ -100,4 +101,8 @@ export const News = {
     ],
   },
   timestamps: true,
+  defaultPopulate: {
+    previewImage: true,
+    project: true,
+  },
 }

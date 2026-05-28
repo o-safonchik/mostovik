@@ -1,206 +1,165 @@
-import type { NextPage } from "next";
-import Image from "next/image";
-import styles from "@/styles/news.module.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import type { NextPage } from "next"
+import Navbar from "@/components/layout/Navbar"
+import Footer from "@/components/layout/Footer"
+import NewsCard from "@/components/news/NewsCard"
+import { getPayload } from "payload"
+import config from "@payload-config"
+import Link from "next/link"
 
-const News: NextPage = () => {
+interface Props {
+  searchParams: Promise<{
+    page?: string
+  }>
+}
+
+const ITEMS_PER_PAGE = 6
+
+const getPagination = (current: number, total: number) => {
+  const pages: (number | "...")[] = []
+
+  const add = (v: number | "...") => pages.push(v)
+
+  const start = Math.max(2, current - 1)
+  const end = Math.min(total - 1, current + 1)
+
+  add(1)
+
+  if (start > 2) add("...")
+
+  for (let i = start; i <= end; i++) {
+    add(i)
+  }
+
+  if (end < total - 1) add("...")
+
+  if (total > 1) add(total)
+
+  return pages
+}
+
+const NewsPage: NextPage<Props> = async ({ searchParams }) => {
+  const payload = await getPayload({ config })
+
+  const params = await searchParams
+  const currentPage = Number(params.page) || 1
+
+  const newsData = await payload.find({
+    collection: "news",
+    sort: "-publishDate",
+    page: currentPage,
+    limit: ITEMS_PER_PAGE,
+    depth: 2,
+  })
+
+  const pagination = getPagination(currentPage, newsData.totalPages)
+
   return (
-    <div className={styles.div}>
-      <section className={styles.news}>
-        <div className={styles.smallLogo}>
-          
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* HEADER */}
+      <section className="relative overflow-hidden bg-[#111] py-10 text-Bright-blue">
         <Navbar />
-        <div className={styles.newsInner}>
-          <div className={styles.frameParent}>
-            <div className={styles.parent}>
-              <h3 className={styles.h3}>Главная</h3>
-              <div className={styles.rectangleWrapper}>
-                <div className={styles.frameChild} />
-              </div>
-              <h3 className={styles.h32}>Новости</h3>
-            </div>
-            <h1 className={styles.h1}>НОВОСТИ</h1>
+
+        <div className="mx-auto max-w-7xl px-6 pt-20">
+          <div className="flex items-center gap-3 text-sm text-white/70">
+            <span>Главная</span>
+            <div className="h-px w-10 bg-white/30" />
+            <span>Новости</span>
           </div>
+
+          <h1 className="mt-6 text-5xl font-bold tracking-wide">
+            НОВОСТИ
+          </h1>
         </div>
       </section>
-      <main className={styles.inner}>
-        <div className={styles.frameGroup}>
-          <div className={styles.iconfilterParent}>
-            <button className={styles.iconfilter}>
-              <Image
-                className={styles.groupIcon}
-                loading="lazy"
-                width={29.1}
-                height={29.1}
-                sizes="100vw"
-                alt=""
-                src="/icons/filter.svg"
-              />
-            </button>
-            <button className={styles.iconsearch}>
-              <Image
-                className={styles.groupIcon}
-                loading="lazy"
-                width={29.1}
-                height={29.1}
-                sizes="100vw"
-                alt=""
-                src="/icons/search.svg"
-              />
-            </button>
-          </div>
-          <div className={styles.group}>
-            <a href="/news/news1">  
-            <section className={styles.section}>
-              <Image
-                className={styles.newsContainersIcon}
-                width={552}
-                height={321}
-                sizes="100vw"
-                alt=""
-                src="/news/1.png"
-              />
-              <div className={styles.newsBlocks}>
-                <div className={styles.dividersWrapper}>
-                  <h3 className={styles.dividers}>22.04.2026</h3>
-                </div>
-                <div className={styles.wrapper}>
-                  <div className={styles.div2}>
-                    Начаты работы по проектированию объектов высокоскоростной
-                    железнодорожной магистрали Санкт-Петербург — Москва —
-                    Великий Новгород
-                  </div>
-                </div>
-              </div>
-            </section>
-            </a>
-            <section className={styles.section2}>
-              <Image
-                className={styles.newsContainersIcon}
-                width={552}
-                height={321}
-                sizes="100vw"
-                alt=""
-                src="/news/2.png"
-              />
-              <div className={styles.newsBlocks}>
-                <div className={styles.dividersWrapper}>
-                  <h3 className={styles.dividers}>17.04.2026</h3>
-                </div>
-                <div className={styles.wrapper}>
-                  <div className={styles.div2}>
-                    Заключен государственный контракт на проектирование
-                    автомобильных дорог в Чукотском автономном округе
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className={styles.section2}>
-              <Image
-                className={styles.newsContainersIcon}
-                width={552}
-                height={321}
-                sizes="100vw"
-                alt=""
-                src="/news/3.png"
-              />
-              <div className={styles.newsBlocks}>
-                <div className={styles.dividersWrapper}>
-                  <h3 className={styles.dividers}>31.03.2026</h3>
-                </div>
-                <div className={styles.wrapper}>
-                  <div className={styles.div2}>
-                    Получено положительное заключение экспертизы сметной
-                    стоимости по объекту «Строительство
-                    природно-оздоровительного комплекса категории 5*
-                    «Байкальская гавань»
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className={styles.section2}>
-              <Image
-                className={styles.newsContainersIcon}
-                width={552}
-                height={321}
-                sizes="100vw"
-                alt=""
-                src="/news/4.png"
-              />
-              <div className={styles.newsBlocks}>
-                <div className={styles.dividersWrapper}>
-                  <h3 className={styles.dividers}>30.03.2026</h3>
-                </div>
-                <div className={styles.wrapper}>
-                  <div className={styles.div2}>
-                    Получено положительное заключение экспертизы проектной
-                    документации по объекту «Строительство
-                    природно-оздоровительного комплекса категории 5*
-                    «Байкальская гавань»
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className={styles.section2}>
-              <Image
-                className={styles.newsContainersIcon}
-                width={552}
-                height={321}
-                sizes="100vw"
-                alt=""
-                src="/news/5.png"
-              />
-              <div className={styles.newsBlocks}>
-                <div className={styles.dividersWrapper}>
-                  <h3 className={styles.dividers}>16.03.2026</h3>
-                </div>
-                <div className={styles.wrapper}>
-                  <div className={styles.div2}>
-                    Начаты работы по проектированию поликлиники в г. Бугры
-                    Ленинградской области
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className={styles.frameWrapper}>
-            <div className={styles.iconarrowParent}>
-              <button className={styles.iconarrow}>
-                <Image
-                  className={styles.icon4}
-                  loading="lazy"
-                  width={20}
-                  height={20}
-                  sizes="100vw"
-                  alt=""
-                  src="/icons/Arrow.svg"
-                />
-              </button>
-              <div className={styles.pageNumbers}>
-                <button className={styles.pages}>1</button>
-                <button className={styles.pages2}>2</button>
-                <button className={styles.pages2}>3</button>
-                <button className={styles.pages2}>4</button>
-              </div>
-              <button className={styles.iconarrow2}>
-                <Image
-                  className={styles.icon5}
-                  width={20}
-                  height={20}
-                  sizes="100vw"
-                  alt=""
-                  src="/icons/Arrowlftpan.svg"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-     <Footer />
-    </div>
-  );
-};
 
-export default News;
+      {/* CONTENT */}
+      <main className="mx-auto max-w-7xl px-6 py-20">
+        {newsData.docs.length === 0 ? (
+          <div className="py-20 text-center text-xl">
+            Новости не найдены
+          </div>
+        ) : (
+          <>
+            {/* NEWS LIST */}
+            <div className="flex flex-col gap-[70px] w-full">
+              {newsData.docs.map((item) => (
+                <div
+                  key={item.id}
+                  className="transition-all duration-500 hover:-translate-y-2"
+                >
+                  <NewsCard
+                    slug={item.slug}
+                    title={item.title}
+                    publishDate={item.publishDate}
+                    previewImage={
+                      item.previewImage && typeof item.previewImage === "object"
+                        ? {
+                            url: item.previewImage.url,
+                            alt: item.previewImage.alt,
+                          }
+                        : undefined
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* PAGINATION */}
+            {newsData.totalPages > 1 && (
+              <div className="mt-20 flex items-center justify-center gap-3">
+                {/* PREV */}
+                {currentPage > 1 && (
+                  <Link
+                    href={`/news?page=${currentPage - 1}`}
+                    className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+                  >
+                    Назад
+                  </Link>
+                )}
+
+                {/* NUMBERS */}
+                {pagination.map((page, i) => {
+                  if (page === "...") {
+                    return (
+                      <span key={`dots-${i}`} className="px-3 text-gray-400">
+                        ...
+                      </span>
+                    )
+                  }
+
+                  return (
+                    <Link
+                      key={page}
+                      href={`/news?page=${page}`}
+                      className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
+                        currentPage === page
+                          ? "bg-black text-white"
+                          : "hover:bg-black hover:text-white"
+                      }`}
+                    >
+                      {page}
+                    </Link>
+                  )
+                })}
+
+                {/* NEXT */}
+                {currentPage < newsData.totalPages && (
+                  <Link
+                    href={`/news?page=${currentPage + 1}`}
+                    className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+                  >
+                    Далее
+                  </Link>
+                )}
+              </div>
+            )}
+          </>
+        )}
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
+
+export default NewsPage
