@@ -38,15 +38,18 @@ export default async function ProjectPage({ params }: PageProps) {
         <Navbar />
 
         <section className="relative w-full">
+          {typeof project.previewImage === "object" &&
+          project.previewImage?.url && (
           <Image
             src={project.previewImage.url}
-            alt={project.previewImage.alt}
+            alt={project.previewImage.alt || project.title}
             width={1920}
             height={700}
             className="w-full h-[570px] object-cover"
             priority
             unoptimized
           />
+          )}
 
           <div className="absolute inset-0 bg-black/40" />
 
@@ -95,14 +98,15 @@ export default async function ProjectPage({ params }: PageProps) {
               </span>
             </div>
           </div>
-
           <div className="overflow-hidden rounded-2xl">
-           <div className="w-full h-full object-cover">
-            
-                <iframe src="https://yandex.ru/map-widget/v1/?l=sat%2Cskl&ll=34.060342%2C44.451696&z=16" 
-                width="560" 
+            <div className="w-full h-full object-cover">
+              <iframe
+                src={`https://yandex.ru/map-widget/v1/?l=sat%2Cskl&ll=${project.longitude}%2C${project.latitude}&z=12&pt=${project.longitude},${project.latitude},pm2rdm`}
+                width="100%"
                 height="400"
-                className="position:relative;"></iframe></div>
+                className="position:relative;">
+              </iframe>
+            </div>
           </div>
         </div>
       </section>
@@ -120,14 +124,16 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
 
           <div className="overflow-hidden rounded-2xl">
+          {typeof project.charactImage === "object" &&
+          project.charactImage?.url && (
             <Image
               src={project.charactImage.url}
-              alt={project.charactImage.alt}
+              alt={project.charactImage.alt || project.title}
               width={900}
               height={900}
               className="w-full h-full object-cover"
               unoptimized
-            />
+            />)}
           </div>
         </div>
       </section>
@@ -136,14 +142,16 @@ export default async function ProjectPage({ params }: PageProps) {
         <div className="max-w-[1440px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div className="overflow-hidden rounded-2xl">
+              {typeof project.stagesImage === "object" &&
+              project.stagesImage?.url && (
               <Image
                 src={project.stagesImage.url}
-                alt={project.stagesImage.alt}
+                alt={project.stagesImage.alt || project.title}
                 width={900}
                 height={700}
                 className="w-full h-full object-cover"
                 unoptimized
-              />
+              />)}
             </div>
 
             <div>

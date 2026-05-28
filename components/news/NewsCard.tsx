@@ -24,7 +24,7 @@ export default function NewsCard({
     ? new Date(publishDate).toLocaleDateString("ru-RU")
     : ""
 
-  const imageUrl = previewImage?.url || "/news/default.jpg"
+  const imageUrl = previewImage?.url || "/default.jpg"
   const imageAlt = previewImage?.alt || title
 
   return (

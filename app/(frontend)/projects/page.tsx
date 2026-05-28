@@ -2,7 +2,16 @@ import Navbar from "@/components/layout/Navbar1"
 import Footer from "@/components/layout/Footer"
 import ProjectsGrid from "@/components/projects/ProjectsGrid"
 
-export default function ProjectsPage() {
+interface Props {
+  searchParams: Promise<{
+    page?: string
+  }>
+}
+
+export default async function ProjectsPage({ 
+  searchParams 
+}: Props) {
+  const params = await searchParams
   return (
     <main className="bg-[#F5F5F7] text-[#1C2E6A]">
       <Navbar />
@@ -36,7 +45,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Grid */}
-      <ProjectsGrid />
+      <ProjectsGrid page={params.page}/>
 
       <Footer />
     </main>

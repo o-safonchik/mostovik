@@ -19,17 +19,13 @@ export const metadata: Metadata = {
   description: "Corporate website",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html
       lang="en"
       className={`${inter.variable} ${montserrat.variable}`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         {children}
       </body>
     </html>
