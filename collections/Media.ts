@@ -9,7 +9,10 @@ const dirname = path.dirname(filename)
 
 export const Media = {
   slug: 'media',
-  label: 'Медиа файлы',
+  labels: {
+    singular: "Медиафайл",
+    plural: "Медиафайлы",
+  },
   type: 'uploadDetails',
   admin: {
     useAsTitle: 'filename',

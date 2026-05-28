@@ -17,7 +17,10 @@ import { authenticated } from '../access/authenticated.ts'
 
 export const Projects = {
   slug: 'projects',
-  label: 'Проекты',
+  labels: {
+    singular: "Проект",
+    plural: "Проекты",
+  },
   timestamps: true,
   access: {
       create: authenticated,

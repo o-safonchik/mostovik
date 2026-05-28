@@ -2,7 +2,10 @@ import { authenticated } from '../access/authenticated.ts';
 
 export const Users = {
   slug: 'users',
-  label: 'Пользователи',
+  labels: {
+    singular: "Пользователь",
+    plural: "Пользователи",
+  },
   access: {
     admin: authenticated,
     create: authenticated,

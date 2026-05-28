@@ -18,7 +18,10 @@ import slugify from 'slugify';
 
 export const News = {
   slug: 'news',
-  label: 'Новости',
+  labels: {
+    singular: "Новость",
+    plural: "Новости",
+  },
   access: {
         create: authenticated,
         delete: authenticated,

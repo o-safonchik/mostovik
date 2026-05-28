@@ -11,6 +11,9 @@ import { Projects } from "./collections/Projects.ts";
 import { News } from "./collections/News.ts";
 
 import { Homepage } from './globals/Homepage.ts';
+import { Resumes } from "./collections/Resumes.ts";
+import { Applications } from "./collections/Applications.ts";
+import { Vacancy } from "./collections/Vacancy.ts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Projects, News],
+  collections: [Users, Media, Projects, News, Vacancy, Applications, Resumes],
   globals: [Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

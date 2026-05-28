@@ -4,24 +4,39 @@ import Footer from "@/components/layout/Footer"
 import VacancySidebar from "@/components/career/VacancySidebar"
 import VacancyContent from "@/components/career/VacancyContent"
 import VacancyForm from "@/components/career/VacancyForm"
+import { getPayload } from "payload"
+import config from "@payload-config"
 
-type VacancyPageProps = {
-  params: Promise<{ id: string }>
+interface Props {
+  params: Promise<{
+    slug: string
+  }>
 }
 
-export default async function VacancyPage({ params }: VacancyPageProps) {
-  const { id } = await params
+export default async function VacancyPage({ params }: Props) {
+  
   
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}/my-route?id=${id}`, {
-      cache: 'revalidate',
-    })
-    
-    if (!response.ok) {
-      notFound()
-    }
-    
-    const vacancy = await response.json()
+  const payload = await getPayload({ config })
+
+  const { slug } = await params
+
+  const vacancyData = await payload.find({
+    collection: "vacancy",
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+    depth: 2,
+  })
+
+  const vacancy = vacancyData.docs[0]
+
+  if (!vacancy) {
+    return notFound()
+  }
 
     return (
       <main className="bg-[#F5F5F7] text-[#1E2E67]">
@@ -41,10 +56,14 @@ export default async function VacancyPage({ params }: VacancyPageProps) {
 
         <section className="py-[80px]">
           <div className="mx-auto grid max-w-[1400px] grid-cols-[280px_1fr] gap-[120px] px-12">
-            <VacancySidebar />
+            <VacancySidebar
+              salary={vacancy.salary}
+              experience={vacancy.experience}
+              employment={vacancy.employment}
+            />
 
             <div>
-              <VacancyContent />
+              <VacancyContent vacancy={vacancy} />
               <VacancyForm vacancyId={vacancy.id} />
             </div>
           </div>

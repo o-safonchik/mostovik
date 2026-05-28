@@ -71,6 +71,9 @@ export interface Config {
     media: Media;
     projects: Project;
     news: News;
+    vacancy: Vacancy;
+    applications: Application;
+    resumes: Resume;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +85,9 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
     news: NewsSelect<false> | NewsSelect<true>;
+    vacancy: VacancySelect<false> | VacancySelect<true>;
+    applications: ApplicationsSelect<false> | ApplicationsSelect<true>;
+    resumes: ResumesSelect<false> | ResumesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -327,6 +333,75 @@ export interface News {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vacancy".
+ */
+export interface Vacancy {
+  id: number;
+  title: string;
+  slug: string;
+  employment: string;
+  salary?: number | null;
+  experience?: string | null;
+  responsibilities?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  requirements?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  skills?:
+    | {
+        item?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  application?: (number | null) | Application;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications".
+ */
+export interface Application {
+  id: number;
+  vacancy: number | Vacancy;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  about?: string | null;
+  resume?: (number | null) | Resume;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resumes".
+ */
+export interface Resume {
+  id: number;
+  candidateName?: string | null;
+  email?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -364,6 +439,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news';
         value: number | News;
+      } | null)
+    | ({
+        relationTo: 'vacancy';
+        value: number | Vacancy;
+      } | null)
+    | ({
+        relationTo: 'applications';
+        value: number | Application;
+      } | null)
+    | ({
+        relationTo: 'resumes';
+        value: number | Resume;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -574,6 +661,72 @@ export interface NewsSelect<T extends boolean = true> {
   project?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vacancy_select".
+ */
+export interface VacancySelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  employment?: T;
+  salary?: T;
+  experience?: T;
+  responsibilities?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  requirements?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  skills?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  application?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "applications_select".
+ */
+export interface ApplicationsSelect<T extends boolean = true> {
+  vacancy?: T;
+  firstName?: T;
+  lastName?: T;
+  email?: T;
+  phone?: T;
+  about?: T;
+  resume?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "resumes_select".
+ */
+export interface ResumesSelect<T extends boolean = true> {
+  candidateName?: T;
+  email?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
