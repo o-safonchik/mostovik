@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import styles from "@/styles/hero.module.css";
+import Link from "next/link"
 
 export default function Hero() {
   return (
@@ -65,8 +66,10 @@ export default function Hero() {
                 className={styles.button}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
+                
               >
-                <span>Проекты</span>
+                <Link href="/projects" className="absolute inset-0" aria-hidden />
+                <span >Проекты</span>
                 <span className={styles.buttonArrow} aria-hidden>
                   →
                 </span>
@@ -78,10 +81,12 @@ export default function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
               >
+                <Link href="/about" className="absolute inset-0" aria-hidden />
                 <span>О компании</span>
                 <span className={styles.buttonArrow} aria-hidden>
                   →
                 </span>
+                
               </motion.button>
             </div>
           </div>

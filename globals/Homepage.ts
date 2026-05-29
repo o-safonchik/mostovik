@@ -5,6 +5,10 @@ export const Homepage: GlobalConfig = {
 
   label: 'Главная страница',
 
+  access: {
+    read: () => true, 
+  },
+
   fields: [
     {
       name: 'featuredProjects',
