@@ -5,6 +5,10 @@ import Link from "next/link"
 
 interface Props {
   page?: string
+  status?: string
+  year?: string
+  region?: string
+  worktype?: string
 }
 
 const ITEMS_PER_PAGE = 6
@@ -33,21 +37,54 @@ const getPagination = (current: number, total: number) => {
 }
 
 export default async function ProjectsGrid({ 
-  page 
+  page,
+  status,
+  year,
+  region,
+  worktype
 }: Props) {
     const payload = await getPayload({ config })
   
     const currentPage = Number(page) || 1
-  
+
+    const where: any = {}
+    if (status === "finished") {
+    where.finished = {
+      equals: true,
+      }
+    }
+
+    if (status === "current") {
+      where.finished = {
+        equals: false,
+      }
+    }
+    if (year) {
+      where.startYear = {
+        equals: Number(year),
+      }
+    }
+    if (region) {
+      where.locationName = {
+        equals: region,
+      }
+    }
+    if (worktype) {
+      where.worktype = {
+        equals: worktype,
+      }
+    }
+
     const projectsData = await payload.find({
       collection: "projects",
+      where,
       page: currentPage,
       limit: ITEMS_PER_PAGE,
       depth: 2,
     })
 
     
-    const pagination = getPagination(currentPage, projectsData.totalPages)
+  const pagination = getPagination(currentPage, projectsData.totalPages)
   return (
     <section className="pb-[140px]">
       <div className="mx-auto max-w-[1400px] px-12">
@@ -77,20 +114,6 @@ export default async function ProjectsGrid({
           ))}
         </div>
 
-        {/* Pagination 
-        <div className="mt-20 flex items-center justify-center gap-6 text-[28px] text-[#1C2E6A]">
-          <button>←</button>
-
-          <div className="flex gap-4">
-            <span className="font-bold">1</span>
-            <span className="opacity-50">2</span>
-            <span className="opacity-50">3</span>
-            <span className="opacity-50">4</span>
-          </div>
-
-          <button>→</button>
-        </div>
-        */}
         {projectsData.totalPages > 1 && (
           <div className="mt-20 flex items-center justify-center gap-3">
           {/* PREV */}

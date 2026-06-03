@@ -1,173 +1,283 @@
-import Image from "next/image";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import { notFound } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
+
+import Navbar from "@/components/layout/Navbar"
+import Footer from "@/components/layout/Footer"
+
+import { getPayload } from "payload"
+import config from "@payload-config"
+
+import { RichText } from "@payloadcms/richtext-lexical/react"
 
 type PageProps = {
   params: Promise<{
-    slug: string;
-  }>;
-};
-
-async function getProject(slug: string) {
-  const res = await fetch(
-    `http://localhost:3000/api/projects?where[slug][equals]=${slug}&depth=2`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
-  );
-
-  if (!res.ok) {
-    throw new Error("Ошибка загрузки проекта");
-  }
-
-  const data = await res.json();
-
-  return data.docs[0];
+    slug: string
+  }>
 }
 
-export default async function ProjectPage({ params }: PageProps) {
-  const { slug } = await params;
+export default async function ProjectPage({
+  params,
+}: PageProps) {
+  const { slug } = await params
 
-  const project = await getProject(slug);
+  const payload = await getPayload({
+    config,
+  })
+
+  const projectData = await payload.find({
+    collection: "projects",
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+    depth: 3,
+  })
+
+  const project = projectData.docs[0]
+
+  if (!project) {
+    notFound()
+  }
 
   return (
-    <div className="w-full bg-[#f5f5f5] overflow-hidden flex flex-col">
-      <div className="bg-[#172762]">
-        <Navbar />
+    <main className="bg-[#F5F5F7] text-[#172762]">
+      <Navbar />
 
-        <section className="relative w-full">
-          {typeof project.previewImage === "object" &&
-          project.previewImage?.url && (
-          <Image
-            src={project.previewImage.url}
-            alt={project.previewImage.alt || project.title}
-            width={1920}
-            height={700}
-            className="w-full h-[570px] object-cover"
-            priority
-            unoptimized
-          />
+      {/* HERO */}
+
+      <section className="relative">
+        {project.previewImage &&
+          typeof project.previewImage === "object" &&
+          project.previewImage.url && (
+            <Image
+              src={project.previewImage.url}
+              alt={
+                project.previewImage.alt ||
+                project.title
+              }
+              width={1920}
+              height={800}
+              priority
+              unoptimized
+              className="h-[650px] w-full object-cover"
+            />
           )}
 
-          <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/50" />
 
-          <div className="absolute left-[120px] bottom-[80px] z-10 max-w-5xl text-white">
-            <div className="flex items-center gap-3 text-sm md:text-base mb-6 flex-wrap">
-              <span>Главная</span>
-              <span className="w-5 h-[2px] bg-white" />
-              <span>Проекты</span>
-            </div>
+        <div className="absolute bottom-[80px] left-1/2 w-full max-w-[1440px] -translate-x-1/2 px-6 text-white">
+          <div className="mb-8 flex items-center gap-3 text-sm">
+            <Link href="/">Главная</Link>
 
-            <h1 className="text-3xl md:text-5xl font-semibold leading-tight">
-              {project.title}
-            </h1>
+            <div className="h-[2px] w-[20px] bg-white" />
+
+            <Link href="/projects">
+              Проекты
+            </Link>
           </div>
-        </section>
-      </div>
 
-      <section className="max-w-[1440px] mx-auto px-6 py-24 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-6 text-[#172762]">
-            <div className="border-b border-gray-300 pb-4 flex justify-between gap-6">
-              <span className="text-xl font-medium">Регион</span>
-              <span className="text-xl">{project.locationName}</span>
-            </div>
-
-            <div className="border-b border-gray-300 pb-4 flex justify-between gap-6">
-              <span className="text-xl font-medium">Вид работ</span>
-
-              <span className="text-xl">
-                {project.workType
-                  ?.map((item: any) => item.item)
-                  .join(", ")}
-              </span>
-            </div>
-
-            <div className="border-b border-gray-300 pb-4 flex justify-between gap-6">
-              <span className="text-xl font-medium">Заказчик</span>
-              <span className="text-xl">{project.customer}</span>
-            </div>
-
-            <div className="border-b border-gray-300 pb-4 flex justify-between gap-6">
-              <span className="text-xl font-medium">Координаты</span>
-
-              <span className="text-xl">
-                {project.latitude}, {project.longitude}
-              </span>
-            </div>
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <div className="w-full h-full object-cover">
-              <iframe
-                src={`https://yandex.ru/map-widget/v1/?l=sat%2Cskl&ll=${project.longitude}%2C${project.latitude}&z=12&pt=${project.longitude},${project.latitude},pm2rdm`}
-                width="100%"
-                height="400"
-                className="position:relative;">
-              </iframe>
-            </div>
-          </div>
+          <h1 className="max-w-5xl text-6xl font-bold leading-tight">
+            {project.title}
+          </h1>
         </div>
       </section>
 
-      <section className="max-w-[1440px] mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      {/* ABOUT */}
+
+      <section className="mx-auto max-w-[1440px] px-6 py-24">
+        <div className="grid gap-20 lg:grid-cols-2">
           <div>
-            <h2 className="text-4xl font-semibold text-[#172762] mb-6">
-              Описание
+            <h2 className="mb-8 text-5xl font-bold">
+              О проекте
             </h2>
 
-            <p className="text-lg leading-8 text-[#081635]">
+            <p className="text-xl leading-relaxed">
               {project.description}
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl">
-          {typeof project.charactImage === "object" &&
-          project.charactImage?.url && (
-            <Image
-              src={project.charactImage.url}
-              alt={project.charactImage.alt || project.title}
-              width={900}
-              height={900}
-              className="w-full h-full object-cover"
-              unoptimized
-            />)}
+          <div className="space-y-6">
+            <div className="flex justify-between border-b pb-5">
+              <span className="font-medium">
+                Регион
+              </span>
+
+              <span>
+                {project.locationName || "—"}
+              </span>
+            </div>
+
+            <div className="flex justify-between border-b pb-5">
+              <span className="font-medium">
+                Заказчик
+              </span>
+
+              <span>
+                {project.customer || "—"}
+              </span>
+            </div>
+
+            <div className="flex justify-between border-b pb-5">
+              <span className="font-medium">
+                Статус
+              </span>
+
+              <span>
+                {project.finished
+                  ? "Завершён"
+                  : "Текущий"}
+              </span>
+            </div>
+
+            <div className="flex justify-between border-b pb-5">
+              <span className="font-medium">
+                Годы реализации
+              </span>
+
+              <span>
+                {project.startYear}
+                {project.endYear
+                  ? ` — ${project.endYear}`
+                  : ""}
+              </span>
+            </div>
+
+            <div className="flex justify-between gap-10 border-b pb-5">
+              <span className="font-medium">
+                Тип работ
+              </span>
+
+              <span className="text-right">
+                {project.workType
+                  ?.map((item) => item.item)
+                  .join(", ") || "—"}
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-20">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="overflow-hidden rounded-2xl">
-              {typeof project.stagesImage === "object" &&
-              project.stagesImage?.url && (
-              <Image
-                src={project.stagesImage.url}
-                alt={project.stagesImage.alt || project.title}
-                width={900}
-                height={700}
-                className="w-full h-full object-cover"
-                unoptimized
-              />)}
-            </div>
+      {/* MAP */}
 
-            <div>
-              <h2 className="text-4xl font-semibold text-[#172762] mb-8">
-                Состав работ
-              </h2>
-
-              <p className="text-lg leading-8 text-[#081635]">
-                {project.description}
-              </p>
+      {project.latitude &&
+        project.longitude && (
+          <section className="mx-auto max-w-[1440px] px-6 pb-24">
+            <div className="overflow-hidden rounded-3xl">
+              <iframe
+                src={`https://yandex.ru/map-widget/v1/?l=sat%2Cskl&ll=${project.longitude}%2C${project.latitude}&z=12&pt=${project.longitude},${project.latitude},pm2rdm`}
+                width="100%"
+                height="500"
+                loading="lazy"
+                allowFullScreen
+                className="h-[500px] w-full border-0"
+              />
             </div>
+          </section>
+        )}
+
+      {/* STAGES */}
+
+      <section className="bg-white py-24">
+        <div className="mx-auto grid max-w-[1440px] gap-20 px-6 lg:grid-cols-2">
+          <div>
+            <h2 className="mb-10 text-5xl font-bold">
+              Состав работ
+            </h2>
+
+            {project.stages && (
+              <RichText data={project.stages} />
+            )}
+          </div>
+
+          <div>
+            {project.stagesImage &&
+              typeof project.stagesImage ===
+                "object" &&
+              project.stagesImage.url && (
+                <Image
+                  src={project.stagesImage.url}
+                  alt={
+                    project.stagesImage.alt ||
+                    project.title
+                  }
+                  width={900}
+                  height={900}
+                  unoptimized
+                  className="rounded-3xl"
+                />
+              )}
           </div>
         </div>
       </section>
+
+      {/* CHARACTERISTICS */}
+
+      <section className="py-24">
+        <div className="mx-auto grid max-w-[1440px] gap-20 px-6 lg:grid-cols-2">
+          <div>
+            {project.charactImage &&
+              typeof project.charactImage ===
+                "object" &&
+              project.charactImage.url && (
+                <Image
+                  src={project.charactImage.url}
+                  alt={
+                    project.charactImage.alt ||
+                    project.title
+                  }
+                  width={900}
+                  height={900}
+                  unoptimized
+                  className="rounded-3xl"
+                />
+              )}
+          </div>
+
+          <div>
+            <h2 className="mb-10 text-5xl font-bold">
+              Характеристики
+            </h2>
+
+            {project.characteristics && (
+              <RichText
+                data={project.characteristics}
+              />
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERT RESULTS */}
+
+      {project.expertResults?.length > 0 && (
+        <section className="bg-white py-24">
+          <div className="mx-auto max-w-[1440px] px-6">
+            <h2 className="mb-12 text-5xl font-bold">
+              Результаты экспертиз
+            </h2>
+
+            <ul className="space-y-5">
+              {project.expertResults.map(
+                (item, index) => (
+                  <li
+                    key={index}
+                    className="border-b pb-5 text-xl"
+                  >
+                    {item.item}
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      
 
       <Footer />
-    </div>
-  );
+    </main>
+  )
 }

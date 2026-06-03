@@ -1,5 +1,5 @@
 import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/Navbar1";
+import Navbar from "@/components/layout/NavbarMainPage";
 import CostCalculator from "@/components/mainpage/CostCalculator";
 import Hero from "@/components/mainpage/Hero";
 import MainPage from "@/components/mainpage/MainPage";

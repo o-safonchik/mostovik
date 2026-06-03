@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import Navbar from "@/components/layout/Navbar1"
+import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import VacancySidebar from "@/components/career/VacancySidebar"
 import VacancyContent from "@/components/career/VacancyContent"

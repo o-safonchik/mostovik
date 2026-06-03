@@ -26,17 +26,19 @@ const ProjectsMapYandex: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
 
-  // Fetch projects with coordinates
+ 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        console.log('Fetching projects...');
-        const response = await fetch('/api/projects?where[latitude][exists]=true&where[longitude][exists]=true');
+        
+        const response = await fetch(
+          '/api/projects?pagination=false&where[latitude][exists]=true&where[longitude][exists]=true'
+       );
         const data = await response.json();
         
         console.log('Projects data:', data);
         
-        // Filter projects that have both latitude and longitude
+       
         const projectsWithCoords = (data.docs || []).filter(
           (project: any) => project.latitude !== null && project.longitude !== null
         );
@@ -45,7 +47,7 @@ const ProjectsMapYandex: React.FC = () => {
         
         setProjects(projectsWithCoords);
         
-        // Set initial selected project
+        
         if (projectsWithCoords.length > 0) {
           setSelectedProject(projectsWithCoords[0]);
         }
@@ -65,7 +67,7 @@ const ProjectsMapYandex: React.FC = () => {
       return;
     }
 
-    const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY || 'YOUR_YANDEX_API_KEY';
+    const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY;
 
     const initializeMap = () => {
       if (!window.ymaps || !mapRef.current) return;
@@ -118,11 +120,11 @@ const ProjectsMapYandex: React.FC = () => {
       });
     };
 
-    // Check if ymaps already loaded
+    
     if (window.ymaps) {
       initializeMap();
     } else {
-      // Load Yandex Maps script
+      
       const script = document.createElement('script');
       script.src = `https://api-maps.yandex.ru/2.1/?apikey=${apiKey}&lang=ru_RU`;
       script.async = true;

@@ -10,7 +10,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className="absolute inset-0">
         <Image
-          src="/hero/bridgehero.jpg"
+          src="/hero/bg2.gif"
           alt="Мост"
           fill
           priority
@@ -18,7 +18,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-[#172762]/70" aria-hidden />
+      <div className="absolute inset-0 bg-[#172762]/60" aria-hidden />
 
       <div className="pointer-events-none absolute inset-0 opacity-70">
         <div className="absolute left-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full bg-[#315AA9]/30 blur-3xl" />
@@ -26,17 +26,33 @@ export default function Hero() {
       </div>
 
       <div className="pointer-events-none absolute inset-0 flex items-center justify-end">
+        <motion.div
+            initial={{
+              opacity: 1,
+              scale: 2.5,
+            }}
+            animate={{
+              opacity: 0.1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1.5,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
         <Image
           src="/Logo.svg"
           alt=""
           width={1200}
           height={1200}
-          className="scale-[1] object-contain opacity-[0.1]"
+          className="scale-[1] object-contain "
           aria-hidden
         />
+        </motion.div>
       </div>
+      
 
-      <div className="pointer-events-none absolute bottom-0 left-0 h-[220px] w-full bg-gradient-to-t from-[#172762] to-transparent" />
+      {/*<div className="pointer-events-none absolute bottom-0 left-0 h-[220px] w-full bg-gradient-to-t from-[#172762] to-transparent" />*/}
 
       <div className={styles.content}>
         <motion.div

@@ -39,7 +39,7 @@ export default async function CareerPage() {
     <div className="min-h-screen flex flex-col bg-[#F5F7FA] overflow-hidden">
       
       {/* HERO */}
-      <section className="relative border-b-2 border-[#1C52D8] bg-[#F5F7FA]">
+      <section className="relative border-b-2 border-[#1C52D8] bg-[#F5F7FA] pt-15">
         <Navbar />
 
         <div className="mx-auto max-w-[1440px] px-6 xl:px-0 pt-[90px] pb-[90px]">

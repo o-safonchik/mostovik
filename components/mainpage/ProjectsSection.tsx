@@ -130,21 +130,15 @@ export default function ProjectsSection() {
           </Link>
         )}
 
-        <div className={styles.navigationButton}>
-          <Link href="/projects">
-          <button className={styles.buttonArrowSmallDark}>
-            <div className={styles.text}>
-              <div className={styles.button}>Подробнее</div>
-            </div>
 
-            <Image
-              className={styles.icon11}
-              width={16}
-              height={16}
-              alt=""
-              src="/icons/arrowiconleft.svg"
-            />
-          </button>
+        <div className={styles.navigationButton}>
+          <Link href={`/projects`}>
+        <button className="border-2 border-[#1c52d8] bg-transparent h-[64px] min-w-[220px] px-[28px] flex items-center justify-center gap-[12px] transition hover:translate-y-[-4px] hover:bg-[var(--Primary-blue)] hover:shadow-[0_12px_30px_rgba(28,82,216,0.2)] group"> 
+            <span className="text-[#1c52d8] text-[16px] font-semibold group-hover:text-white"> 
+                Подробнее 
+            </span>
+            <Image className="w-[16px] h-[16px] group-hover:invert" width={16} height={16} alt="" src="/icons/arrowiconleft.svg" />
+        </button>
           </Link>
         </div>
       </section>

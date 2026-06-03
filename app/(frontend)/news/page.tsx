@@ -56,19 +56,25 @@ const NewsPage: NextPage<Props> = async ({ searchParams }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* HEADER */}
-      <section className="relative overflow-hidden bg-[#111] py-10 text-Bright-blue">
+       {/* HERO */}
+      <section className="relative border-b-2 border-[#1C52D8] bg-[#F5F7FA] pt-15">
         <Navbar />
+      
+        <div className="mx-auto max-w-[1440px] px-6 xl:px-0 pt-[90px] pb-[90px]">
+          <div className="flex flex-col gap-[35px]">
+            <div className="flex items-center gap-[7px] text-sm text-[#1C52D8] font-medium">
+             <span><Link href="/">Главная</Link></span>
 
-        <div className="mx-auto max-w-7xl px-6 pt-20">
-          <div className="flex items-center gap-3 text-sm text-white/70">
-            <span>Главная</span>
-            <div className="h-px w-10 bg-white/30" />
-            <span>Новости</span>
+              <div className="w-[20px] h-[2px] bg-[#1C52D8]" />
+
+              <span>Новости</span>
+            </div>
+
+            <h1 className="text-5xl leading-none font-bold tracking-wide text-[#172762]">
+              НОВОСТИ
+            </h1>
+
           </div>
-
-          <h1 className="mt-6 text-5xl font-bold tracking-wide">
-            НОВОСТИ
-          </h1>
         </div>
       </section>
 

@@ -18,8 +18,6 @@ export const Users = {
   },
   auth: true,
   fields: [
-    // Email added by default
-    // Add more fields as needed
   ],
   timestamps: true,
 }
