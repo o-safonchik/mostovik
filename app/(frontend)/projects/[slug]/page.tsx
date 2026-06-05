@@ -90,7 +90,7 @@ export default async function ProjectPage({
       <section className="mx-auto max-w-[1440px] px-6 py-24">
         <div className="grid gap-20 lg:grid-cols-2">
           <div>
-            <h2 className="mb-8 text-5xl font-bold">
+            <h2 className="mb-8 text-5xl font-bold py-5">
               О проекте
             </h2>
 
@@ -150,11 +150,19 @@ export default async function ProjectPage({
                 Тип работ
               </span>
 
-              <span className="text-right">
-                {project.workType
-                  ?.map((item) => item.item)
-                  .join(", ") || "—"}
-              </span>
+             <div className="text-right">
+  {project.workType?.length ? (
+    <ul>
+      {project.workType.map((item, index) => (
+        <li key={index}>
+          {item.item}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    "—"
+  )}
+</div>
             </div>
           </div>
         </div>
@@ -183,12 +191,12 @@ export default async function ProjectPage({
       <section className="bg-white py-24">
         <div className="mx-auto grid max-w-[1440px] gap-20 px-6 lg:grid-cols-2">
           <div>
-            <h2 className="mb-10 text-5xl font-bold">
+            <h2 className="mb-10 text-5xl font-bold pb-4">
               Состав работ
             </h2>
 
             {project.stages && (
-              <RichText data={project.stages} />
+              <RichText data={project.stages} className="text-xl leading-relaxed" />
             )}
           </div>
 
@@ -237,13 +245,14 @@ export default async function ProjectPage({
           </div>
 
           <div>
-            <h2 className="mb-10 text-5xl font-bold">
+            <h2 className="mb-10 text-5xl font-bold pb-4">
               Характеристики
             </h2>
 
             {project.characteristics && (
               <RichText
                 data={project.characteristics}
+                className="text-xl leading-relaxed"
               />
             )}
           </div>

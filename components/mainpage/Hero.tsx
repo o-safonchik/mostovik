@@ -10,7 +10,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className="absolute inset-0">
         <Image
-          src="/hero/bg2.gif"
+          src="/hero/background.gif"
           alt="Мост"
           fill
           priority
@@ -18,7 +18,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-[#172762]/60" aria-hidden />
+      <div className="absolute inset-0 bg-[#172762]/30" aria-hidden />
 
       <div className="pointer-events-none absolute inset-0 opacity-70">
         <div className="absolute left-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full bg-[#315AA9]/30 blur-3xl" />
