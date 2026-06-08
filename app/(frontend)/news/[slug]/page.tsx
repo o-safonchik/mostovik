@@ -14,7 +14,9 @@ interface Props {
   }>
 }
 
-const NewsSinglePage: NextPage<Props> = async ({ params }) => {
+export default async function NewsSinglePage({ 
+  params 
+}: Props) {
   const payload = await getPayload({ config })
 
   const { slug } = await params
@@ -114,5 +116,3 @@ const NewsSinglePage: NextPage<Props> = async ({ params }) => {
     </div>
   )
 }
-
-export default NewsSinglePage

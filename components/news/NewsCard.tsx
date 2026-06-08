@@ -29,7 +29,6 @@ export default function NewsCard({
 
   return (
     <Link href={`/news/${slug}`} className={styles.section2}>
-      {/* IMAGE — ВСЕГДА РЕНДЕРИТСЯ */}
       <Image
         className={styles.newsContainersIcon}
         width={552}

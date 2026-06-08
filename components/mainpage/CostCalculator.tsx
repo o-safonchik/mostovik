@@ -37,11 +37,10 @@ export default function CostCalculator() {
 
     cost = cost / 1_000_000;
 
-    // ограничение диапазона
     return Math.min(Math.max(cost, 10), 300);
   }, [area, objectType, workType]);
 
-  // 💥 АНИМАЦИЯ ЧИСЛА (делает изменение заметным)
+  
   const [displayValue, setDisplayValue] = useState(rawResult);
 
   useEffect(() => {

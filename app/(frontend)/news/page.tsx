@@ -37,7 +37,9 @@ const getPagination = (current: number, total: number) => {
   return pages
 }
 
-const NewsPage: NextPage<Props> = async ({ searchParams }) => {
+export default async function NewsPage ({
+  searchParams
+}: Props) {
   const payload = await getPayload({ config })
 
   const params = await searchParams
@@ -167,5 +169,3 @@ const NewsPage: NextPage<Props> = async ({ searchParams }) => {
     </div>
   )
 }
-
-export default NewsPage

@@ -1,9 +1,8 @@
 "use client"
 
-import type { NextPage } from "next"
 import Image from "next/image"
 
-const Footer: NextPage = () => {
+export default function Footer () {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -113,5 +112,3 @@ const Footer: NextPage = () => {
     </div>
   )
 }
-
-export default Footer

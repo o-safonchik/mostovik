@@ -1,6 +1,5 @@
 'use client';
-
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from '@/styles/projectsmap.module.css';
 
 interface ProjectWithCoordinates {
@@ -19,7 +18,7 @@ interface ProjectWithCoordinates {
   endYear?: number;
 }
 
-const ProjectsMapYandex: React.FC = () => {
+export default function ProjectsMapYandex () {
   const [projects, setProjects] = useState<ProjectWithCoordinates[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState<ProjectWithCoordinates | null>(null);
@@ -230,5 +229,3 @@ const ProjectsMapYandex: React.FC = () => {
     </div>
   );
 };
-
-export default ProjectsMapYandex;

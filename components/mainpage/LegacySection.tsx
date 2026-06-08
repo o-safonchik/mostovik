@@ -1,9 +1,8 @@
 'use client';
 
-import type { NextPage } from "next";
 import Image from "next/image";
 
-const MainPage: NextPage = () => {
+export default function LegacySection () {
   return (
     <div className="w-full bg-gray-100 flex flex-col items-stretch pb-[84px] box-border leading-normal tracking-normal text-left text-[18.8px] text-gray-700 font-montserrat">
 
@@ -113,5 +112,3 @@ const MainPage: NextPage = () => {
 </div>
   );
 };
-
-export default MainPage;

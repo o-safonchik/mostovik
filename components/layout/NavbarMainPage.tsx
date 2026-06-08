@@ -15,7 +15,7 @@ const navItems = [
   { label: "Контакты", href: "/contact" },
 ] as const;
 
-export default function Navbar1() {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

@@ -76,8 +76,8 @@ export default function ProjectsSection() {
       {/* MIDDLE PROJECTS */}
       <section className={styles.frameParent}>
         {projects.slice(1, 3).map((project) => (
-          <Link href={`/projects/${project.slug}`}>
-          <div key={project.id} className={styles.frameGroup}>
+          <Link key={project.id} href={`/projects/${project.slug}`}>
+          <div className={styles.frameGroup}>
             <div className={styles.locations}>
               <Image
                 className={styles.icon}
