@@ -2,7 +2,7 @@ import HistoryTimeline from "@/components/history/HistoryTimeline";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 
-export default function Home() {
+export default function History() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F5F5F7]">
       <Navbar />

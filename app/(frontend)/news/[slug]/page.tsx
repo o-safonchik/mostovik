@@ -1,5 +1,4 @@
-import type { NextPage } from "next"
-import Navbar from "@/components/layout/NavbarMainPage"
+import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import Image from "next/image"
 import Link from "next/link"

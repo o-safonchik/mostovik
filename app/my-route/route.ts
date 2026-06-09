@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma"
+
 import { NextRequest, NextResponse } from "next/server"
 
 // GET /my-route/vacancy-api?id=<id> - Get vacancy by id

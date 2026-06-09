@@ -20,7 +20,7 @@ export default function VacancySidebar({
       transition={{ duration: 0.7 }}
       className="sticky top-[140px] h-fit"
     >
-      <div className="space-y-8 text-[32px] leading-tight text-[#1E2E67]">
+      <div className="space-y-8 text-[25px] font-bold leading-loose text-[#1E2E67]">
         <p>
           {salary
             ? `От ${salary.toLocaleString("ru-RU")} ₽ в месяц`
@@ -29,7 +29,7 @@ export default function VacancySidebar({
 
         <p>
           {experience
-            ? `Опыт ${experience}`
+            ? ` ${experience}`
             : "Опыт не требуется"}
         </p>
 

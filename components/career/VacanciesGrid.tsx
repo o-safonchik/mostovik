@@ -27,9 +27,9 @@ export default function VacanciesGrid({
 
           <div className="grid grid-cols-1 grid-cols-1 gap-8">
             {vacancies.map((vacancy, index) => (
-              <Link href={`/career/vacancy/${vacancy.slug}`}>   
+              <Link key={index} href={`/career/vacancy/${vacancy.slug}`}>   
               <VacancyCard
-                key={index}
+                
                 title={vacancy.title}
                 employment={vacancy.employment}
                 salary={vacancy.salary}

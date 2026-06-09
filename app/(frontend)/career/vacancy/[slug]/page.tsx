@@ -14,8 +14,6 @@ interface Props {
 }
 
 export default async function VacancyPage({ params }: Props) {
-  
-  
   try {
   const payload = await getPayload({ config })
 

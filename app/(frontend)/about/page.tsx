@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import Link from "next/link";
 
-export default function Home() {
+export default function About () {
   return (
     <main>
       {/* HERO */}
