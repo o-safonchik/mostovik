@@ -1,51 +1,166 @@
+import { getPayload } from "payload"
 import ProjectCard from "./ProjectCard"
+import config from "@payload-config"
+import Link from "next/link"
 
-const projects = [
-  {
-    title: "Горный многофункциональный комплекс на горе Ай-Петри",
-    location: "Республика Крым",
-    image: "/projects/project-1.jpg",
-  },
-  {
-    title: "Многоуровневая наземная открытая автостоянка",
-    location: "Ленинградская область",
-    image: "/projects/project-2.jpg",
-  },
-  {
-    title: "Реконструкция надземного пешеходного перехода",
-    location: "Астана, Казахстан",
-    image: "/projects/project-3.jpg",
-  },
-  {
-    title: "Строительство детского сада",
-    location: "Омская область",
-    image: "/projects/project-4.jpg",
-  },
-]
+interface Props {
+  page?: string
+  status?: string
+  year?: string
+  region?: string
+  worktype?: string
+}
 
-export default function ProjectsGrid() {
+const ITEMS_PER_PAGE = 6
+
+const getPagination = (current: number, total: number) => {
+  const pages: (number | "...")[] = []
+
+  const add = (v: number | "...") => pages.push(v)
+
+  const start = Math.max(2, current - 1)
+  const end = Math.min(total - 1, current + 1)
+
+  add(1)
+
+  if (start > 2) add("...")
+
+  for (let i = start; i <= end; i++) {
+    add(i)
+  }
+
+  if (end < total - 1) add("...")
+
+  if (total > 1) add(total)
+
+  return pages
+}
+
+export default async function ProjectsGrid({ 
+  page,
+  status,
+  year,
+  region,
+  worktype
+}: Props) {
+    const payload = await getPayload({ config })
+  
+    const currentPage = Number(page) || 1
+
+    const where: any = {}
+    if (status === "finished") {
+    where.finished = {
+      equals: true,
+      }
+    }
+
+    if (status === "current") {
+      where.finished = {
+        equals: false,
+      }
+    }
+    if (year) {
+      where.startYear = {
+        equals: Number(year),
+      }
+    }
+    if (region) {
+      where.locationName = {
+        equals: region,
+      }
+    }
+    if (worktype) {
+      where.worktype = {
+        equals: worktype,
+      }
+    }
+
+    const projectsData = await payload.find({
+      collection: "projects",
+      where,
+      page: currentPage,
+      limit: ITEMS_PER_PAGE,
+      depth: 2,
+    })
+
+    
+  const pagination = getPagination(currentPage, projectsData.totalPages)
   return (
     <section className="pb-[140px]">
       <div className="mx-auto max-w-[1400px] px-12">
+        {projectsData.docs.length === 0 ? (
+          <div className="py-20 text-center text-xl">
+            Проекты не найдены
+          </div>
+        ) : (
+          <>
         <div className="grid grid-cols-2 gap-x-8 gap-y-10">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+          {projectsData.docs.map((item) => (
+            <div key={item.id}>
+            <ProjectCard
+              slug={item.slug}
+              title={item.title}
+              locationName={item.locationName}
+              previewImage={
+                      item.previewImage && typeof item.previewImage === "object"
+                        ? {
+                            url: item.previewImage.url,
+                            alt: item.previewImage.alt,
+                          }
+                        : undefined
+                    }
+            />
+            </div>
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="mt-20 flex items-center justify-center gap-6 text-[28px] text-[#1C2E6A]">
-          <button>←</button>
+        {projectsData.totalPages > 1 && (
+          <div className="mt-20 flex items-center justify-center gap-3">
+          {/* PREV */}
+          {currentPage > 1 && (
+            <Link
+              href={`/projects?page=${currentPage - 1}`}
+              className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+            >
+              Назад
+            </Link>
+          )}
 
-          <div className="flex gap-4">
-            <span className="font-bold">1</span>
-            <span className="opacity-50">2</span>
-            <span className="opacity-50">3</span>
-            <span className="opacity-50">4</span>
+          {/* NUMBERS */}
+          {pagination.map((page, i) => {
+            if (page === "...") {
+              return (
+                <span key={`dots-${i}`} className="px-3 text-gray-400">
+                  ...
+                </span>
+            )}
+            return (
+              <Link
+                key={page}
+                href={`/projects?page=${page}`}
+                className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
+                currentPage === page
+                ? "bg-black text-white"
+                : "hover:bg-black hover:text-white"
+                }`}
+              >
+                {page}
+              </Link>
+            )})}
+
+            {/* NEXT */}
+            {currentPage < projectsData.totalPages && (
+            <Link
+              href={`/projects?page=${currentPage + 1}`}
+              className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+            >
+              Далее
+            </Link>
+                )}
           </div>
-
-          <button>→</button>
-        </div>
+        )}
+        </>
+        )}
       </div>
     </section>
   )

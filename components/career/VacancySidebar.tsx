@@ -2,7 +2,17 @@
 
 import { motion } from "framer-motion"
 
-export default function VacancySidebar() {
+interface VacancySidebarProps {
+  salary?: number | null
+  experience?: string | null
+  employment: string
+}
+
+export default function VacancySidebar({
+  salary,
+  experience,
+  employment,
+}: VacancySidebarProps) {
   return (
     <motion.aside
       initial={{ opacity: 0, x: -30 }}
@@ -10,15 +20,30 @@ export default function VacancySidebar() {
       transition={{ duration: 0.7 }}
       className="sticky top-[140px] h-fit"
     >
-      <div className="space-y-8 text-[32px] leading-tight text-[#1E2E67]">
-        <p>От 100 000 ₽ в месяц на руки</p>
+      <div className="space-y-8 text-[25px] font-bold leading-loose text-[#1E2E67]">
+        <p>
+          {salary
+            ? `От ${salary.toLocaleString("ru-RU")} ₽ в месяц`
+            : "Зарплата обсуждается"}
+        </p>
 
-        <p>Опыт 1-3 года</p>
+        <p>
+          {experience
+            ? ` ${experience}`
+            : "Опыт не требуется"}
+        </p>
 
-        <p>Полная занятость</p>
+        <p>{employment}</p>
       </div>
 
       <button
+        onClick={() => {
+          document
+            .getElementById("vacancy-form")
+            ?.scrollIntoView({
+              behavior: "smooth",
+            })
+        }}
         className="
           mt-14
           flex
@@ -41,7 +66,6 @@ export default function VacancySidebar() {
         "
       >
         Откликнуться →
-
       </button>
     </motion.aside>
   )

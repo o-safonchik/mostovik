@@ -48,8 +48,10 @@
   box-sizing: border-box;
   isolation: isolate;
   max-width: 100%;
-  font-size: 24px;
-  color: var(--Gray-50);
+  text-align: left;
+  font-size: 20px;
+  color: #fff;
+  font-family: Montserrat;
 }
 .locations {
   margin: 0 !important;
@@ -113,7 +115,7 @@
   gap: 17px;
   min-width: 336px;
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   font-family: Montserrat;
 }
@@ -217,7 +219,7 @@
   min-width: 336px;
   flex-shrink: 0;
   text-align: left;
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   font-family: Montserrat;
 }
