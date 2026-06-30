@@ -8,14 +8,16 @@ import {
   InlineToolbarFeature, 
   lexicalEditor 
 } from '@payloadcms/richtext-lexical'
-import { Banner } from '../blocks/Banner/config.ts'
-import { Code } from '../blocks/Code/config.ts'
-import { MediaBlock } from '../blocks/MediaBlock/config.ts'
+import { Banner } from '../blocks/Banner/config'
+import { Code } from '../blocks/Code/config'
+import { MediaBlock } from '../blocks/MediaBlock/config'
 
-import { anyone } from '../access/anyone.ts'
-import { authenticated } from '../access/authenticated.ts'
+import { anyone } from '../access/anyone'
+import { authenticated } from '../access/authenticated'
 
-export const Projects = {
+import type { CollectionConfig } from 'payload'
+
+export const Projects: CollectionConfig = {
   slug: 'projects',
   labels: {
     singular: "Проект",
@@ -193,7 +195,7 @@ export const Projects = {
   ],
   hooks: {
     beforeChange: [
-      ({ data }) => {
+      ({ data }: any) => {
       if (data.title && !data.slug) {
       data.slug = slugify(data.title, {
         lower: true,

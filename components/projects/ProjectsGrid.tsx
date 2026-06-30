@@ -70,10 +70,10 @@ export default async function ProjectsGrid({
       }
     }
     if (worktype) {
-      where.worktype = {
-        equals: worktype,
-      }
-    }
+  where["workType.item"] = {
+    equals: worktype,
+  };
+}
 
     const projectsData = await payload.find({
       collection: "projects",
@@ -98,29 +98,30 @@ export default async function ProjectsGrid({
           {projectsData.docs.map((item) => (
             <div key={item.id}>
             <ProjectCard
-              slug={item.slug}
-              title={item.title}
-              locationName={item.locationName}
+              slug={item.slug ?? ""}
+              title={item.title ?? ""}
+              locationName={item.locationName ?? ""}
               previewImage={
-                      item.previewImage && typeof item.previewImage === "object"
-                        ? {
-                            url: item.previewImage.url,
-                            alt: item.previewImage.alt,
-                          }
-                        : undefined
+                item.previewImage &&
+                typeof item.previewImage === "object"
+                  ? {
+                      url: item.previewImage.url ?? "",
+                      alt: item.previewImage.alt ?? "",
                     }
+                  : undefined
+              }
             />
             </div>
           ))}
         </div>
 
         {projectsData.totalPages > 1 && (
-          <div className="mt-20 flex items-center justify-center gap-3">
+          <div className="mt-20 flex items-center justify-center gap-3 ">
           {/* PREV */}
           {currentPage > 1 && (
             <Link
               href={`/projects?page=${currentPage - 1}`}
-              className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+              className="rounded-full border px-5 py-3 transition hover:bg-gray-500 hover:text-white"
             >
               Назад
             </Link>
@@ -140,8 +141,8 @@ export default async function ProjectsGrid({
                 href={`/projects?page=${page}`}
                 className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
                 currentPage === page
-                ? "bg-black text-white"
-                : "hover:bg-black hover:text-white"
+                ? "hover:bg-gray-500 text-white"
+                : "hover:bg-gray-500 hover:text-white"
                 }`}
               >
                 {page}
@@ -152,7 +153,7 @@ export default async function ProjectsGrid({
             {currentPage < projectsData.totalPages && (
             <Link
               href={`/projects?page=${currentPage + 1}`}
-              className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+              className="rounded-full border px-5 py-3 transition hover:bg-gray-500 hover:text-white"
             >
               Далее
             </Link>

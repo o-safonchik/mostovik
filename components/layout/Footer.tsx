@@ -86,7 +86,7 @@ export default function Footer () {
               flex items-center justify-center
               bg-transparent
               transition-all duration-300
-              hover:bg-[#1c52d8]
+              hover:bg-[#4971d4]
               hover:scale-105
               active:scale-95
               group

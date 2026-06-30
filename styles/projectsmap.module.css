@@ -15,10 +15,12 @@
 
 .title {
   font-size: 32px;
-  font-weight: 600;
-  color: #000;
+  color: #1c2e6a;
   margin: 0;
   text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  font-family: inherit;
 }
 
 .mapWrapper {

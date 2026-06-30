@@ -1,8 +1,22 @@
-import type { BannerBlock as BannerBlockProps } from 'src/payload-types'
+import type { BannerBlock as BannerBlockProps } from '@/payload-types'
 
-import { cn } from '@/utilities/ui'
 import React from 'react'
-import RichText from '@/components/RichText'
+import RichText from '@/components/news/RichText'
+
+const cn = (...classes: (string | undefined | null | Record<string, boolean>)[]): string => {
+  return classes
+    .flatMap(c => {
+      if (typeof c === 'string') return c
+      if (typeof c === 'object' && c !== null) {
+        return Object.entries(c)
+          .filter(([, value]) => value)
+          .map(([key]) => key)
+      }
+      return []
+    })
+    .filter(Boolean)
+    .join(' ')
+}
 
 type Props = {
   className?: string
@@ -19,7 +33,7 @@ export const BannerBlock: React.FC<Props> = ({ className, content, style }) => {
           'border-warning bg-warning/30': style === 'warning',
         })}
       >
-        <RichText data={content} enableGutter={false} enableProse={false} />
+        <RichText data={content} />
       </div>
     </div>
   )

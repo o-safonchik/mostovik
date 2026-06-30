@@ -102,8 +102,8 @@ export default async function NewsPage ({
                     previewImage={
                       item.previewImage && typeof item.previewImage === "object"
                         ? {
-                            url: item.previewImage.url,
-                            alt: item.previewImage.alt,
+                            url: item.previewImage.url ?? "",
+                            alt: item.previewImage.alt ?? "",
                           }
                         : undefined
                     }
@@ -119,7 +119,7 @@ export default async function NewsPage ({
                 {currentPage > 1 && (
                   <Link
                     href={`/news?page=${currentPage - 1}`}
-                    className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+                    className="rounded-full border px-5 py-3 transition hover:bg-gray-500 hover:text-white"
                   >
                     Назад
                   </Link>
@@ -141,8 +141,8 @@ export default async function NewsPage ({
                       href={`/news?page=${page}`}
                       className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 ${
                         currentPage === page
-                          ? "bg-black text-white"
-                          : "hover:bg-black hover:text-white"
+                          ? "bg-gray-500 text-white"
+                          : "hover:bg-gray-500 hover:text-white"
                       }`}
                     >
                       {page}
@@ -154,7 +154,7 @@ export default async function NewsPage ({
                 {currentPage < newsData.totalPages && (
                   <Link
                     href={`/news?page=${currentPage + 1}`}
-                    className="rounded-full border px-5 py-3 transition hover:bg-black hover:text-white"
+                    className="rounded-full border px-5 py-3 transition hover:bg-gray-500 hover:text-white"
                   >
                     Далее
                   </Link>

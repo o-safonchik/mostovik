@@ -1,6 +1,7 @@
-import { authenticated } from '../access/authenticated.ts';
+import { CollectionConfig } from 'payload';
+import { authenticated } from '../access/authenticated';
 
-export const Users = {
+export const Users: CollectionConfig = {
   slug: 'users',
   labels: {
     singular: "Пользователь",

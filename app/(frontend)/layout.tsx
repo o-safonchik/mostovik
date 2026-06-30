@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import { Inter, Montserrat } from "next/font/google";
+import PreloaderProvider from "@/components/PreloaderProvider";
+
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -26,7 +28,9 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       className={`${inter.variable} ${montserrat.variable}`}
     >
       <body className="min-h-screen flex flex-col">
-        {children}
+        <PreloaderProvider>
+          {children}
+        </PreloaderProvider>
       </body>
     </html>
   );

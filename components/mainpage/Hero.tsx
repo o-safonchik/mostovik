@@ -9,13 +9,16 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className="absolute inset-0">
-        <Image
-          src="/hero/background.gif"
-          alt="Мост"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/hero/bg.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div className="absolute inset-0 bg-[#172762]/30" aria-hidden />

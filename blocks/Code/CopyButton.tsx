@@ -1,7 +1,31 @@
 'use client'
-import { Button } from '@/components/ui/button'
-import { CopyIcon } from '@payloadcms/ui/icons/Copy'
-import { useState } from 'react'
+import { useState, type MouseEventHandler, type ReactNode } from 'react'
+
+// Local lightweight Button fallback to avoid missing external import
+function Button({
+  children,
+  className,
+  variant,
+  onClick,
+}: {
+  children: ReactNode
+  className?: string
+  variant?: string
+  onClick?: MouseEventHandler<HTMLButtonElement>
+}) {
+  const variantClass = variant === 'secondary' ? 'bg-gray-100 text-gray-900' : ''
+  return (
+    <button type="button" className={`${className ?? ''} ${variantClass}`} onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+
+const CopyIcon = () => (
+  <span aria-hidden="true" className="inline-flex">
+    📋
+  </span>
+)
 
 export function CopyButton({ code }: { code: string }) {
   const [text, setText] = useState('Copy')

@@ -1,7 +1,9 @@
-import { anyone } from "../access/anyone.ts"
-import { authenticated } from "../access/authenticated.ts"
+import { anyone } from "../access/anyone"
+import { authenticated } from "../access/authenticated"
 
-export const Applications = {
+import type { CollectionConfig } from 'payload'
+
+export const Applications: CollectionConfig = {
   slug: "applications",
 
   labels: {

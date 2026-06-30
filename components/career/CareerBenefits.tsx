@@ -17,12 +17,12 @@ export default function CareerBenefits() {
               </div>
               <div className="bg-white p-10  flex items-start border border-[#DCE2EE] hover:-translate-y-2 transition-all duration-500">
                 <p className="text-[24px] leading-[150%] text-[#172762] font-medium">
-                  Работу над масштабными и знаковыми проектами, которые войдут в историю отечественной инфраструктуры
+                  Повышенную оплату труда, соответствующую вашим ожиданиям
                 </p>
               </div>
               <div className="bg-white p-10  flex items-start border border-[#DCE2EE] hover:-translate-y-2 transition-all duration-500">
                 <p className="text-[24px] leading-[150%] text-[#172762] font-medium">
-                  Работу над масштабными и знаковыми проектами, которые войдут в историю отечественной инфраструктуры
+                  Возможность применить и приумножить накопленный опыт, участвовать в развитии перспективных проектных технологий
                 </p>
               </div>
           </div>

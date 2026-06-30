@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 
 type VacancyFormProps = {
-  vacancyId: string
+  vacancyId: number
 }
 
 export default function VacancyForm({
@@ -32,7 +32,7 @@ export default function VacancyForm({
     try {
       const formData = new FormData()
 
-      formData.append("vacancyId", vacancyId)
+      formData.append("vacancyId", vacancyId.toString())
       formData.append("firstName", name)
       formData.append("lastName", surname)
       formData.append("email", email)

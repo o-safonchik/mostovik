@@ -44,7 +44,7 @@ export default async function NewsSinglePage({
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-[#111] text-white">
+      <section className="bg-[#141b75] text-white pt-40">
         <Navbar />
 
         <div className="mx-auto max-w-5xl px-6 py-20">
@@ -79,7 +79,7 @@ export default async function NewsSinglePage({
             {project && (
               <Link
                 href={`/projects/${project.slug}`}
-                className="inline-flex items-center gap-3 rounded-full border border-white/30 px-6 py-3 transition hover:bg-white hover:text-black"
+                className="inline-flex items-center gap-3 rounded-full border border-white/30 px-6 py-3 transition hover:bg-gray-400 "
               >
                 Подробнее о проекте
               </Link>
@@ -104,7 +104,7 @@ export default async function NewsSinglePage({
             </div>
           )}
 
-        <article className="prose prose-lg max-w-none">
+        <article className="prose prose-lg max-w-none leading-relaxed text-gray-800 text-2xl font-semibold">
           {article.content && (
             <RichText data={article.content} />
           )}

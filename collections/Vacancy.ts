@@ -1,9 +1,10 @@
-import { anyone } from '../access/anyone.ts';
-import { authenticated } from '../access/authenticated.ts';
+import { CollectionConfig } from 'payload';
+import { anyone } from '../access/anyone';
+import { authenticated } from '../access/authenticated';
 import slugify from 'slugify';
 
 
-export const Vacancy = {
+export const Vacancy: CollectionConfig = {
   slug: 'vacancy',
   labels: {
     singular: "Вакансия",
@@ -90,7 +91,7 @@ export const Vacancy = {
   ],
   hooks: {
     beforeChange: [
-      ({ data }) => {
+      ({ data }: any) => {
       if (data.title && !data.slug) {
       data.slug = slugify(data.title, {
         lower: true,

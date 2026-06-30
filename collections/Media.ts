@@ -1,28 +1,29 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-import { anyone } from '../access/anyone.ts';
-import { authenticated } from '../access/authenticated.ts';
+import { anyone } from '../access/anyone'
+import { authenticated } from '../access/authenticated'
+
+import type { CollectionConfig } from 'payload'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-export const Media = {
+export const Media: CollectionConfig = {
   slug: 'media',
+
   labels: {
-    singular: "Медиафайл",
-    plural: "Медиафайлы",
+    singular: 'Медиафайл',
+    plural: 'Медиафайлы',
   },
-  type: 'uploadDetails',
-  admin: {
-    useAsTitle: 'filename',
-  },
+
   access: {
     create: authenticated,
     delete: authenticated,
     read: anyone,
     update: authenticated,
   },
+
   fields: [
     {
       name: 'alt',
@@ -30,43 +31,20 @@ export const Media = {
       required: true,
     },
   ],
+
   upload: {
-    staticDir: path.join(path.dirname(dirname), 'public/media'),
-    staticURL: '/media',
+    staticDir: path.join(process.cwd(), 'public/media'),
+
     adminThumbnail: 'thumbnail',
-    focalPoint: true,
+
     imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 300,
-      },
-      {
-        name: 'square',
-        width: 500,
-        height: 500,
-      },
-      {
-        name: 'small',
-        width: 600,
-      },
-      {
-        name: 'medium',
-        width: 900,
-      },
-      {
-        name: 'large',
-        width: 1400,
-      },
-      {
-        name: 'xlarge',
-        width: 1920,
-      },
-      {
-        name: 'og',
-        width: 1200,
-        height: 630,
-        crop: 'center',
-      },
+      { name: 'thumbnail', width: 300 },
+      { name: 'square', width: 500, height: 500 },
+      { name: 'small', width: 600 },
+      { name: 'medium', width: 900 },
+      { name: 'large', width: 1400 },
+      { name: 'xlarge', width: 1920 },
+      { name: 'og', width: 1200, height: 630, crop: 'center' },
     ],
   },
 }

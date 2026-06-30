@@ -5,15 +5,15 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users.ts";
-import { Media } from "./collections/Media.ts";
-import { Projects } from "./collections/Projects.ts";
-import { News } from "./collections/News.ts";
+import { Users } from "./collections/Users";
+import { Media } from "./collections/Media";
+import { Projects } from "./collections/Projects";
+import { News } from "./collections/News";
 
-import { Homepage } from './globals/Homepage.ts';
-import { Resumes } from "./collections/Resumes.ts";
-import { Applications } from "./collections/Applications.ts";
-import { Vacancy } from "./collections/Vacancy.ts";
+import { Homepage } from './globals/Homepage';
+import { Resumes } from "./collections/Resumes";
+import { Applications } from "./collections/Applications";
+import { Vacancy } from "./collections/Vacancy";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

@@ -261,7 +261,7 @@ export default async function ProjectPage({
 
       {/* EXPERT RESULTS */}
 
-      {project.expertResults?.length > 0 && (
+      {(project.expertResults?.length ?? 0) > 0 && (
         <section className="bg-white py-24">
           <div className="mx-auto max-w-[1440px] px-6">
             <h2 className="mb-12 text-5xl font-bold">
@@ -269,7 +269,7 @@ export default async function ProjectPage({
             </h2>
 
             <ul className="space-y-5">
-              {project.expertResults.map(
+              {project.expertResults?.map(
                 (item, index) => (
                   <li
                     key={index}
