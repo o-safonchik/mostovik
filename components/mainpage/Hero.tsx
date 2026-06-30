@@ -44,7 +44,7 @@ export default function Hero() {
             }}
           >
         <Image
-          src="/Logo.svg"
+          src="/logo.svg"
           alt=""
           width={1200}
           height={1200}
